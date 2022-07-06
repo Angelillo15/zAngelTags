@@ -12,13 +12,15 @@ import java.util.List;
 
 public class RemoveTagTabComplete implements TabCompleter {
 
-    private Connection connection;
-    public RemoveTagTabComplete(Connection connection){
-        this.connection = connection;
+
+    private ZAngelTags plugin;
+
+    public RemoveTagTabComplete(ZAngelTags plugin){
+        this.plugin = plugin;
     }
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-        List<String> arguments = SQLQuerys.getTagsName(this.connection);
+        List<String> arguments = SQLQuerys.getTagsName(plugin.getConnection());
         if(args.length == 1) {
             return arguments;
         }

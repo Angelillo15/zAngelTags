@@ -53,7 +53,7 @@ public class PlaceHolderApiExtensions extends PlaceholderExpansion {
             if(SQLQuerys.getTag(plugin.getConnection(), player.getUniqueId()) == "null"){
                 return "";
             }else {
-                return SQLQuerys.getTag(plugin.getConnection(), player.getUniqueId());
+                return SQLQuerys.getTagInGameTag(plugin.getConnection(), SQLQuerys.getTag(plugin.getConnection(), player.getUniqueId()));
             }
 
         }

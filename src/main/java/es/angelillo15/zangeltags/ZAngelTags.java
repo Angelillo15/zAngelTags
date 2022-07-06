@@ -128,7 +128,7 @@ public final class ZAngelTags extends JavaPlugin {
         this.getCommand("createTag").setTabCompleter(new CreateTagTabComplete());
         //Command to delete tags
         this.getCommand("removeTag").setExecutor(new RemoveTag(this));
-        this.getCommand("removeTag").setTabCompleter(new RemoveTagTabComplete(this.getConnection()));
+        this.getCommand("removeTag").setTabCompleter(new RemoveTagTabComplete(this));
     }
 
     //Register events

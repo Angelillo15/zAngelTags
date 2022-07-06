@@ -142,14 +142,20 @@ public class SQLQuerys {
 
     public static ArrayList<String> getTagsInGameTag(Connection connection) {
         try {
+            Bukkit.getConsoleSender().sendMessage("pito antes de ejecutar");
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM `tags`");
             ResultSet result = statement.executeQuery();
+            Bukkit.getConsoleSender().sendMessage("pito despues de ejecutar");
             ArrayList<String> list = new ArrayList<String>();
+            Bukkit.getConsoleSender().sendMessage("pito antes del while");
             while (result.next()) {
                 list.add(result.getString(2));
+                Bukkit.getConsoleSender().sendMessage("pito dentro del while");
             }
+            Bukkit.getConsoleSender().sendMessage("pito despues del return");
             return list;
         } catch (SQLException e) {
+            Bukkit.getConsoleSender().sendMessage("pito exception");
             Bukkit.getConsoleSender().sendMessage(String.valueOf(e));
             throw new RuntimeException(e);
         }
