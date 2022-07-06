@@ -1,0 +1,17 @@
+Messages:
+  reloadMessage: '&b「zAngelTags」Successfully reload'
+  noPerm: "&b「zAngelTags」&4You don't have perms to execute this command"
+  noTagSelected: "&b「zAngelTags」&4You don't have selected any tag"
+  dontExist: "&b「zAngelTags」&4The following tag doesn't exist"
+  actualTag: "&b「zAngelTags」&bYou have the following tag: {tag}"
+  disableTag: "&b「zAngelTags」&aYou have successfully disable the tag"
+  selectedTag: "&b「zAngelTags &aYou have selected the following tag: {tag}"
+  deletedTag: "&b「zAngelTags」&4Tag deleted"
+  createdTag: "&b&b「zAngelTags」tag successfully created"
+  alreadyExist: "&b「zAngelTags」that tag already exist"
+  list:
+    - '&b----------------------------------------'
+    - '&bTag name: &6{tag_name}'
+    - '&bTag display name: &6{tag_displayName}'
+    - '&bTag permission: &6{tag_perm}'
+    - '&b----------------------------------------'
