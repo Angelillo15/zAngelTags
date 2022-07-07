@@ -1,15 +1,20 @@
 package es.angelillo15.zangeltags.listener;
 
 import es.angelillo15.zangeltags.ZAngelTags;
+import es.angelillo15.zangeltags.cache.CacheConfigLoader;
 import es.angelillo15.zangeltags.config.ConfigLoader;
 import es.angelillo15.zangeltags.database.SQLQuerys;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class TagsInventoryClickEvent implements Listener {
     private ZAngelTags plugin;
@@ -46,8 +51,9 @@ public class TagsInventoryClickEvent implements Listener {
 
                     return;
                 }
-
-                List<String> tagsArraya = SQLQuerys.getTagsName(plugin.getConnection());
+                FileConfiguration tags = CacheConfigLoader.getTagsCache().getConfig();
+                Set<String> tagsArray = tags.getConfigurationSection("Tags").getKeys(false);
+                List<String> tagsArraya = new ArrayList<>(tagsArray);
 
                 p.performCommand("zat tag set "+tagsArraya.get(e.getSlot()));
                 p.closeInventory();

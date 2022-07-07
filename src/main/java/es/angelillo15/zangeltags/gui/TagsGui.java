@@ -1,6 +1,7 @@
 package es.angelillo15.zangeltags.gui;
 
 import es.angelillo15.zangeltags.ZAngelTags;
+import es.angelillo15.zangeltags.cache.CacheConfigLoader;
 import es.angelillo15.zangeltags.config.ConfigLoader;
 import es.angelillo15.zangeltags.database.SQLQuerys;
 import es.angelillo15.zangeltags.utils.ColorUtils;
@@ -28,7 +29,8 @@ public class TagsGui {
     }
 
     public void CreateGUI() {
-        ArrayList<String> tagsArray = SQLQuerys.getTagsName(plugin.getConnection());
+        FileConfiguration cache = CacheConfigLoader.getTagsCache().getConfig();
+        Set<String> tagsArray = cache.getConfigurationSection("Tags").getKeys(false);
         FileConfiguration config = ConfigLoader.getGuiConfig().getConfig();
 
         String Title = config.getString("Gui.tittle");
@@ -47,8 +49,8 @@ public class TagsGui {
                 ItemMeta meta = item.getItemMeta();
                 ArrayList<String> list = new ArrayList<>();
                 String name = s;
-                String inGameTag = ChatColor.translateAlternateColorCodes('&', SQLQuerys.getTagInGameTag(plugin.getConnection(), s));
-                String permission = SQLQuerys.getTagPermission(plugin.getConnection(), s);
+                String inGameTag = ChatColor.translateAlternateColorCodes('&', cache.getString("Tags."+s+".inGameTag"));
+                String permission = cache.getString("Tags."+s+".permission");
 
                 FileConfiguration gui = ConfigLoader.getGuiConfig().getConfig();
                 List<String> message = (List<String>) gui.getList("Gui.itemLore");

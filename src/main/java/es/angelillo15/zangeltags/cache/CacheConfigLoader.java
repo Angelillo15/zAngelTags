@@ -18,7 +18,7 @@ public class CacheConfigLoader {
     }
 
     public void loadTagsCache() {
-        tagsCache = new ConfigManager(plugin, "cache", "tags.yml");
+        tagsCache = new ConfigManager(plugin, "cache/", "tags.yml");
         tagsCache.saveDefaultConfig();
     }
 

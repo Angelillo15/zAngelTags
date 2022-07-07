@@ -26,10 +26,11 @@ public class RemoveTag implements CommandExecutor {
             if (args.length < 1) {
                 help(p);
             } else {
-                if(p.hasPermission("zAngelTags.admin")){
+                if (p.hasPermission("zAngelTags.admin")) {
                     if (SQLQuerys.tagExist(plugin.getConnection(), args[0])) {
                         SQLQuerys.removeTag(plugin.getConnection(), args[0]);
                         p.sendMessage(ChatColor.translateAlternateColorCodes('&', ConfigLoader.getMessageConfig().getConfig().getString("Messages.deletedTag")));
+                        plugin.reloadCache();
 
                     } else {
                         p.sendMessage(ChatColor.translateAlternateColorCodes('&', ConfigLoader.getMessageConfig().getConfig().getString("Messages.dontExist")));

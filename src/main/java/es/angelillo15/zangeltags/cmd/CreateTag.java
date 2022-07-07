@@ -29,10 +29,11 @@ public class CreateTag implements CommandExecutor {
                 if (args.length < 3) {
                     help(p);
                 } else {
-                    if(p.hasPermission("zAngelTags.admin")) {
+                    if (p.hasPermission("zAngelTags.admin")) {
                         if (!SQLQuerys.tagExist(plugin.getConnection(), args[0])) {
                             SQLQuerys.createTag(plugin.getConnection(), args[0], args[1], args[2]);
                             p.sendMessage(ChatColor.translateAlternateColorCodes('&', ConfigLoader.getMessageConfig().getConfig().getString("Messages.createdTag")));
+                            plugin.reloadCache();
                         } else {
                             p.sendMessage(ChatColor.translateAlternateColorCodes('&', ConfigLoader.getMessageConfig().getConfig().getString("Messages.alreadyExist")));
                         }

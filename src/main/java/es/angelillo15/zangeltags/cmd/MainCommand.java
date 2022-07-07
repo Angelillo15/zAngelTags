@@ -65,7 +65,7 @@ public class MainCommand implements CommandExecutor {
                 }
 
                 if(args[0].equalsIgnoreCase("test")){
-                    p.sendMessage(ColorUtils.translateColorCodes("#FBAAFE Hola &#FBAAFE Hola"));
+
                 }
 
 
