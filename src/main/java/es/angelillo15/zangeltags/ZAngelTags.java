@@ -1,6 +1,7 @@
 package es.angelillo15.zangeltags;
 
 import es.angelillo15.zangeltags.bstats.Metrics;
+import es.angelillo15.zangeltags.cache.CacheConfigLoader;
 import es.angelillo15.zangeltags.cmd.*;
 import es.angelillo15.zangeltags.config.ConfigLoader;
 import es.angelillo15.zangeltags.database.PluginConnection;
@@ -55,6 +56,7 @@ public final class ZAngelTags extends JavaPlugin {
                 "                                                                      &bVersion: " + version)
         );
         ConfigLoader cl = new ConfigLoader(this);
+        CacheConfigLoader ccl = new CacheConfigLoader(this);
         dbConnection();
         registerCommand();
         registerEvents();
@@ -169,6 +171,7 @@ public final class ZAngelTags extends JavaPlugin {
         ConfigLoader.getGuiConfig().reloadConfig();
         ConfigLoader.getMainConfig().reloadConfig();
         ConfigLoader.getMessageConfig().reloadConfig();
+        CacheConfigLoader.getTagsCache().reloadConfig();
         Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', this.prefix + "&6Successfully reloaded the config"));
         dbConnection();
         Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', this.prefix + "&6Successfully reloaded the plugin"));

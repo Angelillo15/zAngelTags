@@ -3,6 +3,7 @@ package es.angelillo15.zangeltags.gui;
 import es.angelillo15.zangeltags.ZAngelTags;
 import es.angelillo15.zangeltags.config.ConfigLoader;
 import es.angelillo15.zangeltags.database.SQLQuerys;
+import es.angelillo15.zangeltags.utils.ColorUtils;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -52,12 +53,12 @@ public class TagsGui {
                 FileConfiguration gui = ConfigLoader.getGuiConfig().getConfig();
                 List<String> message = (List<String>) gui.getList("Gui.itemLore");
                 for (String c : message) {
-                    list.add(ChatColor.translateAlternateColorCodes('&', c
+                    list.add(ColorUtils.translateColorCodes( c
                                     .replace("{tag_name}", name))
-                            .replace("{tag_displayName}", inGameTag)
+                            .replace("{tag_displayName}", ColorUtils.translateColorCodes(inGameTag))
                             .replace("{tag_perm}", permission));
                 }
-                meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', inGameTag));
+                meta.setDisplayName(ColorUtils.translateColorCodes( inGameTag));
                 meta.setLore(list);
                 item.setItemMeta(meta);
                 tagGui.addItem(item);

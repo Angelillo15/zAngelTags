@@ -4,6 +4,7 @@ import es.angelillo15.zangeltags.ZAngelTags;
 import es.angelillo15.zangeltags.config.ConfigLoader;
 import es.angelillo15.zangeltags.database.SQLQuerys;
 import es.angelillo15.zangeltags.gui.TagsGui;
+import es.angelillo15.zangeltags.utils.ColorUtils;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -59,6 +60,15 @@ public class MainCommand implements CommandExecutor {
                     return true;
                 }
 
+                if(args[0].equalsIgnoreCase("gui")){
+                    TagsGui tagsGui = new TagsGui(plugin, p);
+                }
+
+                if(args[0].equalsIgnoreCase("test")){
+                    p.sendMessage(ColorUtils.translateColorCodes("#FBAAFE Hola &#FBAAFE Hola"));
+                }
+
+
                 if (args[0].equalsIgnoreCase("tag")) {
                     if (args.length >= 2) {
 
@@ -68,12 +78,12 @@ public class MainCommand implements CommandExecutor {
                                 for (String s : sqlList) {
                                     ArrayList<String> list = new ArrayList<>();
                                     String name = s;
-                                    String inGameTag = ChatColor.translateAlternateColorCodes('&', SQLQuerys.getTagInGameTag(plugin.getConnection(), s));
+                                    String inGameTag = ColorUtils.translateColorCodes( SQLQuerys.getTagInGameTag(plugin.getConnection(), s));
                                     String permission = SQLQuerys.getTagPermission(plugin.getConnection(), s);
 
                                     List<String> message = (List<String>) messages.getList("Messages.list");
                                     for (String c : message) {
-                                        list.add(ChatColor.translateAlternateColorCodes('&', c
+                                        list.add(ColorUtils.translateColorCodes( c
                                                         .replace("{tag_name}", name))
                                                 .replace("{tag_displayName}", inGameTag)
                                                 .replace("{tag_perm}", permission));
@@ -93,16 +103,16 @@ public class MainCommand implements CommandExecutor {
                                     if(p.hasPermission(SQLQuerys.getTagPermission(plugin.getConnection(), tag)) || p.hasPermission("zAngelTags.tags.all")){
                                         if (SQLQuerys.playerInDB(plugin.getConnection(), p.getUniqueId())) {
                                             SQLQuerys.updateData(plugin.getConnection(), p.getUniqueId(), tag);
-                                            p.sendMessage(ChatColor.translateAlternateColorCodes('&', selectedTag.replace("{tag}", args[2])));
+                                            p.sendMessage(ColorUtils.translateColorCodes( selectedTag.replace("{tag}", args[2])));
                                         } else {
                                             SQLQuerys.insertData(plugin.getConnection(), p.getUniqueId(), tag);
-                                            p.sendMessage(ChatColor.translateAlternateColorCodes('&', selectedTag.replace("{tag}", args[2])));
+                                            p.sendMessage(ColorUtils.translateColorCodes( selectedTag.replace("{tag}", args[2])));
                                         }
                                     }else {
                                         p.sendMessage(noPerm);
                                     }
                                 } else {
-                                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', dontExist));
+                                    p.sendMessage(ColorUtils.translateColorCodes( dontExist));
                                 }
                             } else {
                                 help(p);
@@ -112,7 +122,7 @@ public class MainCommand implements CommandExecutor {
 
                         if(args[1].equalsIgnoreCase("disable")){
                             SQLQuerys.updateData(plugin.getConnection(), p.getUniqueId(), "");
-                            p.sendMessage(ChatColor.translateAlternateColorCodes('&', disableTag));
+                            p.sendMessage(ColorUtils.translateColorCodes( disableTag));
                             return true;
                         }
 
@@ -121,9 +131,9 @@ public class MainCommand implements CommandExecutor {
                                 if(SQLQuerys.playerInDB(plugin.getConnection(), p.getUniqueId())){
                                     String tag = SQLQuerys.getTag(plugin.getConnection(), p.getUniqueId());
                                     if(!(tag.equals(""))){
-                                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', messages.getString("Messages.actualTag").replace("{tag}", SQLQuerys.getTagInGameTag(plugin.getConnection(), SQLQuerys.getTag(plugin.getConnection(), p.getUniqueId()))) ));
+                                        p.sendMessage(ColorUtils.translateColorCodes( messages.getString("Messages.actualTag").replace("{tag}", SQLQuerys.getTagInGameTag(plugin.getConnection(), SQLQuerys.getTag(plugin.getConnection(), p.getUniqueId()))) ));
                                     }else {
-                                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', noTagSelected));
+                                        p.sendMessage(ColorUtils.translateColorCodes( noTagSelected));
                                     }
                                 }
                                 return true;
@@ -136,9 +146,6 @@ public class MainCommand implements CommandExecutor {
                             help(p);
                         }
 
-                        if(args[0].equalsIgnoreCase("gui")){
-                            TagsGui tagsGui = new TagsGui(plugin, p);
-                        }
                     }
                     help(p);
                     return true;
@@ -149,15 +156,15 @@ public class MainCommand implements CommandExecutor {
     }
 
     public void help(Player p) {
-        p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6----------------zAngelTags----------------"));
-        p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&bAvailable Commands:"));
-        p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&bzAngelTags reload &8&l» &f To reload the plugin"));
-        p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&bzAngelTags tag get &8&l» &f Return your selected"));
-        p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&bzAngelTags tag list &8&l» &f list all the tags"));
-        p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&bzAngelTags tag set <tag> &8&l» &f set a tag"));
-        p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&bzAngelTags gui &8&l» &f open plugin gui "));
-        p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&bzAngelTags tag disable &8&l» &f open plugin gui "));
-        p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&bzAngelTags help &8&l» &f view the help of the plugin "));
+        p.sendMessage(ColorUtils.translateColorCodes( "&6----------------zAngelTags----------------"));
+        p.sendMessage(ColorUtils.translateColorCodes( "&bAvailable Commands:"));
+        p.sendMessage(ColorUtils.translateColorCodes( "&bzAngelTags reload &8&l» &f To reload the plugin"));
+        p.sendMessage(ColorUtils.translateColorCodes( "&bzAngelTags tag get &8&l» &f Return your selected"));
+        p.sendMessage(ColorUtils.translateColorCodes( "&bzAngelTags tag list &8&l» &f list all the tags"));
+        p.sendMessage(ColorUtils.translateColorCodes( "&bzAngelTags tag set <tag> &8&l» &f set a tag"));
+        p.sendMessage(ColorUtils.translateColorCodes( "&bzAngelTags gui &8&l» &f open plugin gui "));
+        p.sendMessage(ColorUtils.translateColorCodes( "&bzAngelTags tag disable &8&l» &f open plugin gui "));
+        p.sendMessage(ColorUtils.translateColorCodes( "&bzAngelTags help &8&l» &f view the help of the plugin "));
 
     }
 }
