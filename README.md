@@ -1,4 +1,4 @@
-# zAngelTags-2.0
+# zAngelTags
 ### Support
 if you have any trouble you can visit my [discord](https://discord.angelillo15.es/) and ask any type of question about my plugins
 
