@@ -65,7 +65,7 @@ public class MainCommand implements CommandExecutor {
                 }
 
                 if(args[0].equalsIgnoreCase("test")){
-
+                    p.sendMessage(plugin.tagsCache.getInGameTag("Diablo"));
                 }
 
 

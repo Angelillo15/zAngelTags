@@ -1,7 +1,6 @@
 package es.angelillo15.zangeltags;
 
 import es.angelillo15.zangeltags.bstats.Metrics;
-import es.angelillo15.zangeltags.cache.CacheConfigLoader;
 import es.angelillo15.zangeltags.cache.TagsCache;
 import es.angelillo15.zangeltags.cmd.*;
 import es.angelillo15.zangeltags.config.ConfigLoader;
@@ -24,7 +23,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.sql.Connection;
 import java.util.ArrayList;
-import java.util.List;
 
 public final class ZAngelTags extends JavaPlugin {
     //Connection
@@ -40,9 +38,12 @@ public final class ZAngelTags extends JavaPlugin {
     //Array List of players
     private ArrayList<TagPlayer> tagsPlayers = new ArrayList<>();
 
+
+
     //bstats loader
     int pluginId = 15601;
     Metrics metrics = new Metrics(this, pluginId);
+    public TagsCache tagsCache = new TagsCache(this);
 
     //Plugin enable
     @Override
@@ -57,13 +58,12 @@ public final class ZAngelTags extends JavaPlugin {
                 "                                                                      &bVersion: " + version)
         );
         ConfigLoader cl = new ConfigLoader(this);
-        CacheConfigLoader ccl = new CacheConfigLoader(this);
         dbConnection();
         registerCommand();
         registerEvents();
         registerPlaceholder();
         updateChecker();
-        TagsCache.saveTags(this);
+        tagsCache.loadData();
     }
 
     //Check if the plugin is in the latest update
@@ -173,14 +173,13 @@ public final class ZAngelTags extends JavaPlugin {
         ConfigLoader.getGuiConfig().reloadConfig();
         ConfigLoader.getMainConfig().reloadConfig();
         ConfigLoader.getMessageConfig().reloadConfig();
-        CacheConfigLoader.getTagsCache().reloadConfig();
         Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', this.prefix + "&6Successfully reloaded the config"));
         dbConnection();
+        tagsCache.loadData();
         Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', this.prefix + "&6Successfully reloaded the plugin"));
-        TagsCache.saveTags(this);
     }
     public void reloadCache(){
-        TagsCache.saveTags(this);
+        tagsCache.loadData();
     }
 
     //Returns Config loader

@@ -1,42 +1,43 @@
 package es.angelillo15.zangeltags.cache;
 
 import es.angelillo15.zangeltags.ZAngelTags;
-import es.angelillo15.zangeltags.config.ConfigLoader;
 import es.angelillo15.zangeltags.database.SQLQuerys;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
-import java.io.File;
-import java.io.IOException;
 import java.sql.Connection;
 import java.util.ArrayList;
 
 public class TagsCache {
-    public static void saveTags(ZAngelTags plugin) {
-        File f = new File(plugin.getDataFolder().getAbsolutePath() + "/cache", "tags.yml");
-        FileConfiguration c = YamlConfiguration.loadConfiguration(f);
+    private FileConfiguration cache = new YamlConfiguration();
+    private ZAngelTags plugin;
+    public TagsCache (ZAngelTags plugin){
+        this.plugin = plugin;
+    }
 
-        c.set("Tags", null);
-        try {
-            c.save(f);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    public void loadData(){
+        this.cache.set("Tags", null);
         Connection connection = plugin.getConnection();
 
         ArrayList<String> tags = SQLQuerys.getTagsName(connection);
         for (String s : tags){
             String inGameTag = SQLQuerys.getTagInGameTag(connection, s);
             String permission = SQLQuerys.getTagPermission(connection, s);
-            c.set("Tags."+s+".name", s);
-            c.set("Tags."+s+".inGameTag", inGameTag);
-            c.set("Tags."+s+".permission", permission);
+            this.cache.set("Tags."+s+".name", s);
+            this.cache.set("Tags."+s+".inGameTag", inGameTag);
+            this.cache.set("Tags."+s+".permission", permission);
         }
-        try {
-            c.save(f);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+    }
+
+    public String getInGameTag(String name){
+        if(this.cache.contains("Tags."+name+".inGameTag")){
+            return this.cache.getString("Tags."+name+".inGameTag");
+        }else {
+            return "";
         }
-        CacheConfigLoader.getTagsCache().reloadConfig();
+    }
+
+    public FileConfiguration getCache(){
+        return this.cache;
     }
 }

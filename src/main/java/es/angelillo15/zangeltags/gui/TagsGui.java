@@ -1,9 +1,7 @@
 package es.angelillo15.zangeltags.gui;
 
 import es.angelillo15.zangeltags.ZAngelTags;
-import es.angelillo15.zangeltags.cache.CacheConfigLoader;
 import es.angelillo15.zangeltags.config.ConfigLoader;
-import es.angelillo15.zangeltags.database.SQLQuerys;
 import es.angelillo15.zangeltags.utils.ColorUtils;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
@@ -29,7 +27,7 @@ public class TagsGui {
     }
 
     public void CreateGUI() {
-        FileConfiguration cache = CacheConfigLoader.getTagsCache().getConfig();
+        FileConfiguration cache = plugin.tagsCache.getCache();
         Set<String> tagsArray = cache.getConfigurationSection("Tags").getKeys(false);
         FileConfiguration config = ConfigLoader.getGuiConfig().getConfig();
 

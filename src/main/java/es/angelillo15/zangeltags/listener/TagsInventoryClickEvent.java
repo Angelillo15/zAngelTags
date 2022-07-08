@@ -1,9 +1,7 @@
 package es.angelillo15.zangeltags.listener;
 
 import es.angelillo15.zangeltags.ZAngelTags;
-import es.angelillo15.zangeltags.cache.CacheConfigLoader;
 import es.angelillo15.zangeltags.config.ConfigLoader;
-import es.angelillo15.zangeltags.database.SQLQuerys;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -51,7 +49,7 @@ public class TagsInventoryClickEvent implements Listener {
 
                     return;
                 }
-                FileConfiguration tags = CacheConfigLoader.getTagsCache().getConfig();
+                FileConfiguration tags = plugin.tagsCache.getCache();
                 Set<String> tagsArray = tags.getConfigurationSection("Tags").getKeys(false);
                 List<String> tagsArraya = new ArrayList<>(tagsArray);
 
