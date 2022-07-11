@@ -1,3 +1,5 @@
+[![Build](https://github.com/Angelillo15/zAngelTags/actions/workflows/maven-publish.yml/badge.svg)](https://github.com/Angelillo15/zAngelTags/actions/workflows/maven-publish.yml)
+
 # zAngelTags
 ### Support
 if you have any trouble you can visit my [discord](https://discord.angelillo15.es/) and ask any type of question about my plugins
