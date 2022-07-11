@@ -10,7 +10,7 @@ public class AddConfig {
     }
 
     public void addMainConfig() {
-        if (!(config.contains("Config.gui"))) {
+        if (!(config.contains("Database.type"))) {
             config.set("Config.gui", "default");
             config.set("Database.type", "MySQL");
             config.options().header(
