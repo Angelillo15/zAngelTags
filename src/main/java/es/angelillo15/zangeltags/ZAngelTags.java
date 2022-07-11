@@ -3,6 +3,7 @@ package es.angelillo15.zangeltags;
 import es.angelillo15.zangeltags.bstats.Metrics;
 import es.angelillo15.zangeltags.cache.TagsCache;
 import es.angelillo15.zangeltags.cmd.*;
+import es.angelillo15.zangeltags.config.AddConfig;
 import es.angelillo15.zangeltags.config.ConfigLoader;
 import es.angelillo15.zangeltags.database.PluginConnection;
 import es.angelillo15.zangeltags.database.SQLQuerys;
@@ -39,7 +40,6 @@ public final class ZAngelTags extends JavaPlugin {
     private ArrayList<TagPlayer> tagsPlayers = new ArrayList<>();
 
 
-
     //bstats loader
     int pluginId = 15601;
     Metrics metrics = new Metrics(this, pluginId);
@@ -63,6 +63,7 @@ public final class ZAngelTags extends JavaPlugin {
         registerEvents();
         registerPlaceholder();
         updateChecker();
+        AddConfig addConfig = new AddConfig();
         tagsCache.loadData();
     }
 
@@ -88,10 +89,10 @@ public final class ZAngelTags extends JavaPlugin {
     }
 
     //Register PAPI placeholder
-    public void registerPlaceholder(){
-        if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null){
+    public void registerPlaceholder() {
+        if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
             new PlaceHolderApiExtensions(this).register();
-        }else {
+        } else {
             Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', this.prefix + "&6&l[⚠ WARNING ⚠] &bPlaceholderAPI isn't installed, PlaceholderAPI is necesary to the Placeholders to work"));
             Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', this.prefix + "&6&l[⚠ WARNING ⚠] &bYou can download PlaceholderAPI at: https://www.spigotmc.org/resources/6245/"));
 
@@ -106,17 +107,24 @@ public final class ZAngelTags extends JavaPlugin {
         String database = db.getString("Database.database");
         String user = db.getString("Database.user");
         String password = db.getString("Database.password");
-        this.connection = new PluginConnection(host, port, database, user, password);
-        if (!SQLQuerys.userDatatableCreated(getConnection())) {
-            Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', this.prefix + "&6Creating userData table....."));
-            SQLQuerys.createUserDataTables(getConnection());
-            Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', this.prefix + "&6userData table succesfully created!"));
+        String type = db.getString("Database.type");
+        this.connection = new PluginConnection(host, port, database, user, password, type, this);
+        if(type.equalsIgnoreCase("SQLite")){
+            SQLQuerys.createTagsDataSQLiteTable(getConnection());
+            SQLQuerys.createUserDataSQLiteTable(getConnection());
+        }else {
+            if (!SQLQuerys.userDatatableCreated(getConnection())) {
+                Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', this.prefix + "&6Creating userData table....."));
+                SQLQuerys.createUserDataTables(getConnection());
+                Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', this.prefix + "&6userData table succesfully created!"));
+            }
+            if (!SQLQuerys.tagsTableCreated(getConnection())) {
+                Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', this.prefix + "&6Creating tags table....."));
+                SQLQuerys.createTagsTables(getConnection());
+                Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', this.prefix + "&6Tags table succesfully created!"));
+            }
         }
-        if (!SQLQuerys.tagsTableCreated(getConnection())) {
-            Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', this.prefix + "&6Creating tags table....."));
-            SQLQuerys.createTagsTables(getConnection());
-            Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', this.prefix + "&6Tags table succesfully created!"));
-        }
+
     }
 
     //Register commands with tab complete
@@ -178,7 +186,8 @@ public final class ZAngelTags extends JavaPlugin {
         tagsCache.loadData();
         Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', this.prefix + "&6Successfully reloaded the plugin"));
     }
-    public void reloadCache(){
+
+    public void reloadCache() {
         tagsCache.loadData();
     }
 
@@ -210,6 +219,7 @@ public final class ZAngelTags extends JavaPlugin {
             }
         }
         return null;
+
     }
 
     //Plugin disable

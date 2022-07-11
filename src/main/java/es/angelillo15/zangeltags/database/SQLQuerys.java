@@ -58,6 +58,26 @@ public class SQLQuerys {
         }
     }
 
+    public static void createUserDataSQLiteTable(Connection connection){
+        try {
+            PreparedStatement statement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS 'userData' ('ID' INTEGER, 'UUID' TEXT, 'Tag' TEXT, PRIMARY KEY('ID' AUTOINCREMENT));");
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public static void createTagsDataSQLiteTable(Connection connection){
+        try {
+            PreparedStatement statement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS 'tags' ('name' TEXT, 'inGameTag' TEXT, 'permission' TEXT);");
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
     public static void insertData(Connection connection, UUID uuid, String tag) {
         try {
             PreparedStatement statement = connection.prepareStatement("INSERT INTO `userData` (`ID`, `UUID`, `Tag`) VALUES (null, ?, ?);");

@@ -4,8 +4,10 @@
 # ███╔╝  ██╔══██║██║╚██╗██║██║   ██║██╔══╝  ██║     ██║   ██╔══██║██║   ██║╚════██║
 #███████╗██║  ██║██║ ╚████║╚██████╔╝███████╗███████╗██║   ██║  ██║╚██████╔╝███████║
 #╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝╚═╝   ╚═╝  ╚═╝ ╚═════╝ ╚══════╝
-
+#
+# Database types -> MySQL (MySQL or MariaDB) / SQLite
 Database:
+  type: 'SQLite' #SQlite or MySQL
   host: '127.0.0.1' # host of your database
   port: '3306' # default port for MariaDB and MySQL
   database: 'zangeltags' # name of your database. A database server can contain multiple databases

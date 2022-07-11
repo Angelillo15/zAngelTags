@@ -5,7 +5,7 @@ Messages:
   dontExist: "&b「zAngelTags」&4The following tag doesn't exist"
   actualTag: "&b「zAngelTags」&bYou have the following tag: {tag}"
   disableTag: "&b「zAngelTags」&aYou have successfully disable the tag"
-  selectedTag: "&b「zAngelTags &aYou have selected the following tag: {tag}"
+  selectedTag: "&b「zAngelTags」&aYou have selected the following tag: {tag}"
   deletedTag: "&b「zAngelTags」&4Tag deleted"
   createdTag: "&b&b「zAngelTags」tag successfully created"
   alreadyExist: "&b「zAngelTags」that tag already exist"

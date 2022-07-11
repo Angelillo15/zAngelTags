@@ -1,5 +1,5 @@
 name: zAngelTags
-version: '${project.version}'
+version: '${version}'
 main: es.angelillo15.zangeltags.ZAngelTags
 api-version: 1.16
 prefix: zAngelTags

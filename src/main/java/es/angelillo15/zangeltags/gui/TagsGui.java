@@ -28,7 +28,7 @@ public class TagsGui {
 
     public void CreateGUI() {
         FileConfiguration cache = plugin.tagsCache.getCache();
-        Set<String> tagsArray = cache.getConfigurationSection("Tags").getKeys(false);
+
         FileConfiguration config = ConfigLoader.getGuiConfig().getConfig();
 
         String Title = config.getString("Gui.tittle");
@@ -41,6 +41,11 @@ public class TagsGui {
 
         Inventory tagGui = Bukkit.createInventory(null, 54, ChatColor.translateAlternateColorCodes('&', Title));
         int slots = 1;
+        if(!(cache.contains("Tags"))){
+            p.openInventory(tagGui);
+            return;
+        }
+        Set<String> tagsArray = cache.getConfigurationSection("Tags").getKeys(false);
         for (String s : tagsArray) {
             if (slots <= 46) {
                 ItemStack item = new ItemStack(material);
