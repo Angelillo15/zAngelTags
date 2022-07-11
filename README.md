@@ -1,3 +1,5 @@
+[![zAngelTags build](https://github.com/Angelillo15/zAngelTags/actions/workflows/spigot.yml/badge.svg)](https://github.com/Angelillo15/zAngelTags/actions/workflows/spigot.yml)
+
 # zAngelTags
 ### Support
 if you have any trouble you can visit my [discord](https://discord.angelillo15.es/) and ask any type of question about my plugins
