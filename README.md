@@ -1,4 +1,4 @@
-[![Build](https://github.com/Angelillo15/zAngelTags/actions/workflows/maven-publish.yml/badge.svg)](https://github.com/Angelillo15/zAngelTags/actions/workflows/maven-publish.yml)
+[![zAngelTags build](https://github.com/Angelillo15/zAngelTags/actions/workflows/spigot.yml/badge.svg)](https://github.com/Angelillo15/zAngelTags/actions/workflows/spigot.yml)
 
 # zAngelTags
 ### Support
