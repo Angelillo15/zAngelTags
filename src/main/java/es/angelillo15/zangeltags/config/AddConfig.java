@@ -11,18 +11,7 @@ public class AddConfig {
 
     public void addMainConfig() {
         if (!(config.contains("Database.type"))) {
-            config.set("Config.gui", "default");
             config.set("Database.type", "MySQL");
-            config.options().header(
-                    "███████╗ █████╗ ███╗   ██╗ ██████╗ ███████╗██╗  ████████╗ █████╗  ██████╗ ███████╗\n" +
-                    "╚══███╔╝██╔══██╗████╗  ██║██╔════╝ ██╔════╝██║  ╚══██╔══╝██╔══██╗██╔════╝ ██╔════╝\n" +
-                    "  ███╔╝ ███████║██╔██╗ ██║██║  ███╗█████╗  ██║     ██║   ███████║██║  ███╗███████╗\n" +
-                    " ███╔╝  ██╔══██║██║╚██╗██║██║   ██║██╔══╝  ██║     ██║   ██╔══██║██║   ██║╚════██║\n" +
-                    "███████╗██║  ██║██║ ╚████║╚██████╔╝███████╗███████╗██║   ██║  ██║╚██████╔╝███████║\n" +
-                    "╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝╚═╝   ╚═╝  ╚═╝ ╚═════╝ ╚══════╝\n"
-                    +
-                    "Database types -> MySQL (MySQL or MariaDB) / SQLite");
-            config.options().copyHeader(true);
             ConfigLoader.getMainConfig().saveConfig();
         }
     }

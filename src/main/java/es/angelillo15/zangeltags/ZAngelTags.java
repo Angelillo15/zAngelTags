@@ -58,12 +58,12 @@ public final class ZAngelTags extends JavaPlugin {
                 "                                                                      &bVersion: " + version)
         );
         ConfigLoader cl = new ConfigLoader(this);
+        AddConfig addConfig = new AddConfig();
         dbConnection();
         registerCommand();
         registerEvents();
         registerPlaceholder();
         updateChecker();
-        AddConfig addConfig = new AddConfig();
         tagsCache.loadData();
     }
 

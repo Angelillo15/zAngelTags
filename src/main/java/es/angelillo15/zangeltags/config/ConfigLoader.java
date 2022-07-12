@@ -38,6 +38,11 @@ public class ConfigLoader {
 
     }
 
+    public void reload(){
+        this.MainConfig.reloadConfig();
+        this.MainConfig.saveConfig();
+    }
+
     public static ConfigManager getMainConfig() {
         return MainConfig;
     }
