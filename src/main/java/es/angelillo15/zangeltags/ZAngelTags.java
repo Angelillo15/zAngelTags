@@ -2,10 +2,10 @@ package es.angelillo15.zangeltags;
 
 import es.angelillo15.zangeltags.bstats.Metrics;
 import es.angelillo15.zangeltags.cache.TagsCache;
-import es.angelillo15.zangeltags.cmd.*;
 import es.angelillo15.zangeltags.cmd.commandsManagers.MainCommandManager;
 import es.angelillo15.zangeltags.cmd.createTag.CreateTag;
 import es.angelillo15.zangeltags.cmd.createTag.CreateTagTabComplete;
+import es.angelillo15.zangeltags.cmd.mainSubcommands.TabComplete;
 import es.angelillo15.zangeltags.cmd.removeTag.RemoveTag;
 import es.angelillo15.zangeltags.cmd.removeTag.RemoveTagTabComplete;
 import es.angelillo15.zangeltags.config.AddConfig;
