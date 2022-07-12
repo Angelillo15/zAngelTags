@@ -3,6 +3,11 @@ package es.angelillo15.zangeltags;
 import es.angelillo15.zangeltags.bstats.Metrics;
 import es.angelillo15.zangeltags.cache.TagsCache;
 import es.angelillo15.zangeltags.cmd.*;
+import es.angelillo15.zangeltags.cmd.commandsManagers.MainCommandManager;
+import es.angelillo15.zangeltags.cmd.createTag.CreateTag;
+import es.angelillo15.zangeltags.cmd.createTag.CreateTagTabComplete;
+import es.angelillo15.zangeltags.cmd.removeTag.RemoveTag;
+import es.angelillo15.zangeltags.cmd.removeTag.RemoveTagTabComplete;
 import es.angelillo15.zangeltags.config.AddConfig;
 import es.angelillo15.zangeltags.config.ConfigLoader;
 import es.angelillo15.zangeltags.database.PluginConnection;
@@ -129,11 +134,11 @@ public final class ZAngelTags extends JavaPlugin {
 
     //Register commands with tab complete
     public void registerCommand() {
-        this.getCommand("zAngelTags").setExecutor(new MainCommand(this));
-        this.getCommand("zat").setExecutor(new MainCommand(this));
+        this.getCommand("zAngelTags").setExecutor(new MainCommandManager(this));
+        this.getCommand("zat").setExecutor(new MainCommandManager(this));
         this.getCommand("zAngelTags").setTabCompleter(new TabComplete(this));
         this.getCommand("zat").setTabCompleter(new TabComplete(this));
-        this.getCommand("tags").setExecutor(new MainCommand(this));
+        this.getCommand("tags").setExecutor(new MainCommandManager(this));
         this.getCommand("tags").setTabCompleter(new TabComplete(this));
         //Command to create tags
         this.getCommand("createTag").setExecutor(new CreateTag(this));

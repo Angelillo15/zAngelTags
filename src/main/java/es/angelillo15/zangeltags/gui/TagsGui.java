@@ -41,7 +41,19 @@ public class TagsGui {
 
         Inventory tagGui = Bukkit.createInventory(null, 54, ChatColor.translateAlternateColorCodes('&', Title));
         int slots = 1;
-        if(!(cache.contains("Tags"))){
+        if (!(cache.contains("Tags"))) {
+            ItemStack barrier = new ItemStack(Material.BARRIER);
+            ItemMeta barrierMeta = barrier.getItemMeta();
+            barrierMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', BarrierCloseName));
+            barrier.setItemMeta(barrierMeta);
+            tagGui.setItem(49, barrier);
+
+            ItemStack disable = new ItemStack(Material.NAME_TAG);
+            ItemMeta disableMeta = barrier.getItemMeta();
+            disableMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', DisableName));
+            disable.setItemMeta(disableMeta);
+            tagGui.setItem(53, disable);
+
             p.openInventory(tagGui);
             return;
         }
@@ -52,18 +64,18 @@ public class TagsGui {
                 ItemMeta meta = item.getItemMeta();
                 ArrayList<String> list = new ArrayList<>();
                 String name = s;
-                String inGameTag = ChatColor.translateAlternateColorCodes('&', cache.getString("Tags."+s+".inGameTag"));
-                String permission = cache.getString("Tags."+s+".permission");
+                String inGameTag = ChatColor.translateAlternateColorCodes('&', cache.getString("Tags." + s + ".inGameTag"));
+                String permission = cache.getString("Tags." + s + ".permission");
 
                 FileConfiguration gui = ConfigLoader.getGuiConfig().getConfig();
                 List<String> message = (List<String>) gui.getList("Gui.itemLore");
                 for (String c : message) {
-                    list.add(ColorUtils.translateColorCodes( c
+                    list.add(ColorUtils.translateColorCodes(c
                                     .replace("{tag_name}", name))
                             .replace("{tag_displayName}", ColorUtils.translateColorCodes(inGameTag))
                             .replace("{tag_perm}", permission));
                 }
-                meta.setDisplayName(ColorUtils.translateColorCodes( inGameTag));
+                meta.setDisplayName(ColorUtils.translateColorCodes(inGameTag));
                 meta.setLore(list);
                 item.setItemMeta(meta);
                 tagGui.addItem(item);

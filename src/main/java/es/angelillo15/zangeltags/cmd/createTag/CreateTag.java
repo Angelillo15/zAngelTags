@@ -1,4 +1,4 @@
-package es.angelillo15.zangeltags.cmd;
+package es.angelillo15.zangeltags.cmd.createTag;
 
 import es.angelillo15.zangeltags.ZAngelTags;
 import es.angelillo15.zangeltags.config.ConfigLoader;
