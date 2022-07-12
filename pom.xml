@@ -6,7 +6,7 @@
 
     <groupId>es.angelillo15</groupId>
     <artifactId>zAngelTags</artifactId>
-    <version>3.3</version>
+    <version>3.4</version>
     <packaging>jar</packaging>
 
     <name>ZAngelTags</name>
