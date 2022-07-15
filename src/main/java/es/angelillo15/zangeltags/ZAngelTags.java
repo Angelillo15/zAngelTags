@@ -2,10 +2,10 @@ package es.angelillo15.zangeltags;
 
 import es.angelillo15.zangeltags.bstats.Metrics;
 import es.angelillo15.zangeltags.cache.TagsCache;
-import es.angelillo15.zangeltags.cmd.commandsManagers.MainCommandManager;
-import es.angelillo15.zangeltags.cmd.createTag.CreateTag;
-import es.angelillo15.zangeltags.cmd.createTag.CreateTagTabComplete;
-import es.angelillo15.zangeltags.cmd.mainSubcommands.TabComplete;
+import es.angelillo15.zangeltags.cmd.commandsmanagers.MainCommandManager;
+import es.angelillo15.zangeltags.cmd.createtag.CreateTag;
+import es.angelillo15.zangeltags.cmd.createtag.CreateTagTabComplete;
+import es.angelillo15.zangeltags.cmd.mainsubcommands.TabComplete;
 import es.angelillo15.zangeltags.cmd.removeTag.RemoveTag;
 import es.angelillo15.zangeltags.cmd.removeTag.RemoveTagTabComplete;
 import es.angelillo15.zangeltags.config.AddConfig;
@@ -42,7 +42,6 @@ public final class ZAngelTags extends JavaPlugin {
     private ConfigLoader cl;
 
     //Array List of players
-    private ArrayList<TagPlayer> tagsPlayers = new ArrayList<>();
 
 
     //bstats loader
@@ -129,7 +128,6 @@ public final class ZAngelTags extends JavaPlugin {
                 Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', this.prefix + "&6Tags table succesfully created!"));
             }
         }
-
     }
 
     //Register commands with tab complete
@@ -201,30 +199,6 @@ public final class ZAngelTags extends JavaPlugin {
         return this.cl;
     }
 
-    //This is for add a player to the array list
-    public void addTagPlayer(TagPlayer tagPlayer) {
-        this.tagsPlayers.add(tagPlayer);
-    }
-
-    //This function is to remove a player from the Array
-    public void removeTagPlayer(TagPlayer tagPlayer) {
-        this.tagsPlayers.remove(tagPlayer);
-    }
-
-    //return the ArrayList
-    public ArrayList<TagPlayer> getTagsPlayers() {
-        return this.tagsPlayers;
-    }
-
-    //This functions search the following player in the list and returns it
-    public TagPlayer getTagPlayer(Player player) {
-        for (TagPlayer tagPlayer : tagsPlayers) {
-            if (tagPlayer.getPlayer().getUniqueId().equals(player.getUniqueId())) {
-                return tagPlayer;
-            }
-        }
-        return null;
-    }
 
     //Plugin disable
     @Override

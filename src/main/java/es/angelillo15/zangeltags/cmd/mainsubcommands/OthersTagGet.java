@@ -1,8 +1,8 @@
-package es.angelillo15.zangeltags.cmd.mainSubcommands;
+package es.angelillo15.zangeltags.cmd.mainsubcommands;
 
 import es.angelillo15.zangeltags.ZAngelTags;
 import es.angelillo15.zangeltags.cmd.SubCommand;
-import es.angelillo15.zangeltags.cmd.commandsManagers.MainCommandManager;
+import es.angelillo15.zangeltags.cmd.commandsmanagers.MainCommandManager;
 import es.angelillo15.zangeltags.config.ConfigLoader;
 import es.angelillo15.zangeltags.database.SQLQuerys;
 import es.angelillo15.zangeltags.utils.ColorUtils;

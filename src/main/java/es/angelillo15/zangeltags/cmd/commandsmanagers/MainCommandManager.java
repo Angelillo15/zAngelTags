@@ -1,8 +1,8 @@
-package es.angelillo15.zangeltags.cmd.commandsManagers;
+package es.angelillo15.zangeltags.cmd.commandsmanagers;
 
 import es.angelillo15.zangeltags.ZAngelTags;
 import es.angelillo15.zangeltags.cmd.SubCommand;
-import es.angelillo15.zangeltags.cmd.mainSubcommands.*;
+import es.angelillo15.zangeltags.cmd.mainsubcommands.*;
 import es.angelillo15.zangeltags.gui.TagsGui;
 import es.angelillo15.zangeltags.utils.ColorUtils;
 import net.md_5.bungee.api.ChatColor;

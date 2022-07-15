@@ -1,7 +1,7 @@
-package es.angelillo15.zangeltags.cmd.mainSubcommands;
+package es.angelillo15.zangeltags.cmd.mainsubcommands;
 
 import es.angelillo15.zangeltags.ZAngelTags;
-import es.angelillo15.zangeltags.cmd.commandsManagers.MainCommandManager;
+import es.angelillo15.zangeltags.cmd.commandsmanagers.MainCommandManager;
 import es.angelillo15.zangeltags.cmd.SubCommand;
 import es.angelillo15.zangeltags.config.ConfigLoader;
 import es.angelillo15.zangeltags.database.SQLQuerys;
@@ -47,10 +47,8 @@ public class TagSC extends SubCommand {
     public void execute(Player player, String[] args) {
         FileConfiguration messages = ConfigLoader.getMessageConfig().getConfig();
 
-        String reloadMessage = messages.getString("Messages.reloadMessage");
         String noTagSelected = messages.getString("Messages.noTagSelected");
         String dontExist = messages.getString("Messages.dontExist");
-        String ActualTag = messages.getString("Messages.actualTag");
         String disableTag = messages.getString("Messages.disableTag");
         String selectedTag = messages.getString("Messages.selectedTag");
         String noPerm = ChatColor.translateAlternateColorCodes('&', messages.getString("Messages.noPerm"));

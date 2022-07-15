@@ -1,7 +1,6 @@
 package es.angelillo15.zangeltags.database;
 
 import es.angelillo15.zangeltags.ZAngelTags;
-import es.angelillo15.zangeltags.config.ConfigLoader;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 
@@ -21,7 +20,7 @@ public class PluginConnection {
     private ZAngelTags plugin;
     private String type;
 
-    public PluginConnection(String host, int port, String database, String user, String password, String type,ZAngelTags plugin) {
+    public PluginConnection(String host, int port, String database, String user, String password, String type, ZAngelTags plugin) {
         this.host = host;
         this.port = port;
         this.database = database;
@@ -29,12 +28,12 @@ public class PluginConnection {
         this.password = password;
         this.plugin = plugin;
         this.type = type;
-        if(type.equalsIgnoreCase("SQLite")){
+        if (type.equalsIgnoreCase("SQLite")) {
 
             try {
-                String path = plugin.getDataFolder().getAbsolutePath() +"/database.db";
+                String path = plugin.getDataFolder().getAbsolutePath() + "/database.db";
                 // db parameters
-                String url = "jdbc:sqlite:"+path;
+                String url = "jdbc:sqlite:" + path;
                 // create a connection to the database
                 conn = DriverManager.getConnection(url);
 
@@ -44,7 +43,7 @@ public class PluginConnection {
                 Bukkit.getConsoleSender().sendMessage(String.valueOf(e));
 
             }
-        }else {
+        } else {
             try {
                 synchronized (this) {
                     if (conection != null && !conection.isClosed()) {
@@ -66,16 +65,8 @@ public class PluginConnection {
     }
 
 
-
-
-
     public Connection getConection() {
-        if(type.equalsIgnoreCase("SQLite")){
-            return conn;
-        }else {
-            return conection;
-        }
+        return conection;
     }
-
 
 }

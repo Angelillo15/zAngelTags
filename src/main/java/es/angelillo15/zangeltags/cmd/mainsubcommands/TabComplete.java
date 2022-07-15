@@ -1,7 +1,6 @@
-package es.angelillo15.zangeltags.cmd.mainSubcommands;
+package es.angelillo15.zangeltags.cmd.mainsubcommands;
 
 import es.angelillo15.zangeltags.ZAngelTags;
-import es.angelillo15.zangeltags.database.SQLQuerys;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;

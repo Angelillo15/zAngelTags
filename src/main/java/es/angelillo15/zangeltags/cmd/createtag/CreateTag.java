@@ -1,4 +1,4 @@
-package es.angelillo15.zangeltags.cmd.createTag;
+package es.angelillo15.zangeltags.cmd.createtag;
 
 import es.angelillo15.zangeltags.ZAngelTags;
 import es.angelillo15.zangeltags.config.ConfigLoader;
@@ -11,7 +11,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class CreateTag implements CommandExecutor {
-    private ZAngelTags plugin;
+    private final ZAngelTags plugin;
 
     public CreateTag(ZAngelTags plugin) {
         this.plugin = plugin;
@@ -46,8 +46,8 @@ public class CreateTag implements CommandExecutor {
     }
 
     public void help(Player p) {
-        p.sendMessage(net.md_5.bungee.api.ChatColor.translateAlternateColorCodes('&', "&6----------------zAngelTags----------------"));
-        p.sendMessage(net.md_5.bungee.api.ChatColor.translateAlternateColorCodes('&', "&bAvailable Command:"));
-        p.sendMessage(net.md_5.bungee.api.ChatColor.translateAlternateColorCodes('&', "&b/createTag <name> <tag_formatted> <permission>"));
+        p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6----------------zAngelTags----------------"));
+        p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&bAvailable Command:"));
+        p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&b/createTag <name> <tag_formatted> <permission>"));
     }
 }

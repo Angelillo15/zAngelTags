@@ -1,6 +1,5 @@
 package es.angelillo15.zangeltags.listener;
 
-import es.angelillo15.zangeltags.TagPlayer;
 import es.angelillo15.zangeltags.ZAngelTags;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -15,7 +14,6 @@ public class JoinEvent implements Listener {
 
     @EventHandler
     public void tagPlayerJoinEvent(PlayerJoinEvent e) {
-        TagPlayer tp = new TagPlayer(e.getPlayer(), plugin);
-        plugin.addTagPlayer(tp);
+
     }
 }
