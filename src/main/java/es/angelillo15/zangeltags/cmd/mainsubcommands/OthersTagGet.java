@@ -54,7 +54,7 @@ public class OthersTagGet extends SubCommand {
             if (args.length == 3) {
                 if (args[2].equalsIgnoreCase("get")) {
                     Player target = Bukkit.getPlayer(args[1]);
-                    if (!(target == null)) {
+                    if (target != null) {
                         String tag = SQLQuerys.getTag(plugin.getConnection(), player.getUniqueId());
                         if (!(tag.equals(""))) {
                             player.sendMessage(ColorUtils.translateColorCodes(messages.getString("Messages.actualTag").replace("{tag}", SQLQuerys.getTagInGameTag(plugin.getConnection(), SQLQuerys.getTag(plugin.getConnection(), target.getUniqueId())))));

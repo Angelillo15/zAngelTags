@@ -11,21 +11,12 @@ import java.sql.SQLException;
 public class PluginConnection {
 
     private Connection conection;
+
     private Connection conn;
-    private String host;
-    private int port;
-    private String database;
-    private String user;
-    private String password;
     private ZAngelTags plugin;
-    private String type;
+    private final String type;
 
     public PluginConnection(String host, int port, String database, String user, String password, String type, ZAngelTags plugin) {
-        this.host = host;
-        this.port = port;
-        this.database = database;
-        this.user = user;
-        this.password = password;
         this.plugin = plugin;
         this.type = type;
         if (type.equalsIgnoreCase("SQLite")) {
@@ -51,22 +42,24 @@ public class PluginConnection {
                         return;
                     }
                     Class.forName("com.mysql.jdbc.Driver");
-                    this.conection = DriverManager.getConnection("jdbc:mysql://" + this.host + ":" + this.port + "/" + this.database, this.user, this.password);
+                    this.conection = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + database, user, password);
                     Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&b「zAngelTags」&6Successfully connected to Database"));
 
                 }
-            } catch (SQLException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 Bukkit.getConsoleSender().sendMessage(String.valueOf(e));
 
-            } catch (ClassNotFoundException e) {
-                Bukkit.getConsoleSender().sendMessage(String.valueOf(e));
             }
         }
     }
 
 
     public Connection getConection() {
-        return conection;
+        if(type.equalsIgnoreCase("SQLite")){
+            return conn;
+        }else {
+            return conection;
+        }
     }
 
 }

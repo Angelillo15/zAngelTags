@@ -23,10 +23,10 @@ public class TagsGui {
     public TagsGui(ZAngelTags plugin, Player p) {
         this.plugin = plugin;
         this.p = p;
-        CreateGUI();
+        createGUI();
     }
 
-    public void CreateGUI() {
+    public void createGUI() {
         FileConfiguration cache = plugin.tagsCache.getCache();
 
         FileConfiguration config = ConfigLoader.getGuiConfig().getConfig();

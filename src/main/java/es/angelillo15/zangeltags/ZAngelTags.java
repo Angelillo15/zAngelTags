@@ -6,19 +6,16 @@ import es.angelillo15.zangeltags.cmd.commandsmanagers.MainCommandManager;
 import es.angelillo15.zangeltags.cmd.createtag.CreateTag;
 import es.angelillo15.zangeltags.cmd.createtag.CreateTagTabComplete;
 import es.angelillo15.zangeltags.cmd.mainsubcommands.TabComplete;
-import es.angelillo15.zangeltags.cmd.removeTag.RemoveTag;
-import es.angelillo15.zangeltags.cmd.removeTag.RemoveTagTabComplete;
+import es.angelillo15.zangeltags.cmd.removetag.RemoveTag;
+import es.angelillo15.zangeltags.cmd.removetag.RemoveTagTabComplete;
 import es.angelillo15.zangeltags.config.AddConfig;
 import es.angelillo15.zangeltags.config.ConfigLoader;
 import es.angelillo15.zangeltags.database.PluginConnection;
 import es.angelillo15.zangeltags.database.SQLQuerys;
-import es.angelillo15.zangeltags.listener.JoinEvent;
-import es.angelillo15.zangeltags.listener.LeaveEvent;
 import es.angelillo15.zangeltags.listener.TagsInventoryClickEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -28,7 +25,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.sql.Connection;
-import java.util.ArrayList;
+
 
 public final class ZAngelTags extends JavaPlugin {
     //Connection
@@ -149,14 +146,12 @@ public final class ZAngelTags extends JavaPlugin {
     //Register events
     public void registerEvents() {
         PluginManager pm = this.getServer().getPluginManager();
-        pm.registerEvents(new JoinEvent(this), this);
-        pm.registerEvents(new LeaveEvent(this), this);
         pm.registerEvents(new TagsInventoryClickEvent(this), this);
     }
 
     //Close the database connection
     public void closeConnection() {
-        SQLQuerys.CloseConnection(getConnection());
+        SQLQuerys.closeConnection(getConnection());
         Bukkit.getConsoleSender().sendMessage(net.md_5.bungee.api.ChatColor.translateAlternateColorCodes('&', this.prefix + "&6Connection closed"));
     }
 

@@ -48,7 +48,7 @@ public class OthersTagDisable extends SubCommand {
             if (args.length == 3) {
                 if (args[2].equalsIgnoreCase("disable")) {
                     Player target = Bukkit.getPlayer(args[1]);
-                    if (!(target == null)) {
+                    if (target != null) {
                         SQLQuerys.updateData(plugin.getConnection(), player.getUniqueId(), "");
                         player.sendMessage(ColorUtils.translateColorCodes(disableTag));
                     } else {

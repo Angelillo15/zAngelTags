@@ -1,6 +1,5 @@
 package es.angelillo15.zangeltags.database;
 
-import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 
 import java.sql.*;
@@ -12,11 +11,7 @@ public class SQLQuerys {
         try {
             PreparedStatement statement = connection.prepareStatement("SHOW TABLES LIKE 'userData';");
             ResultSet result = statement.executeQuery();
-            if (result.next()) {
-                return true;
-            } else {
-                return false;
-            }
+            return result.next();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -27,15 +22,12 @@ public class SQLQuerys {
         try {
             PreparedStatement statement = connection.prepareStatement("SHOW TABLES LIKE 'tags';");
             ResultSet result = statement.executeQuery();
-            if (result.next()) {
-                return true;
-            } else {
-                return false;
-            }
+            return result.next();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            Bukkit.getConsoleSender().sendMessage(String.valueOf(e));
         }
 
+        return false;
     }
 
     public static void createUserDataTables(Connection connection) {
@@ -137,7 +129,7 @@ public class SQLQuerys {
 
     }
 
-    public static void CloseConnection(Connection connection) {
+    public static void closeConnection(Connection connection) {
         try {
             connection.close();
         } catch (SQLException e) {
@@ -249,11 +241,7 @@ public class SQLQuerys {
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM `tags` WHERE (name=?)");
             statement.setString(1, name);
             ResultSet resultSet = statement.executeQuery();
-            if(resultSet.next()){
-                return true;
-            }else {
-                return false;
-            }
+            return resultSet.next();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

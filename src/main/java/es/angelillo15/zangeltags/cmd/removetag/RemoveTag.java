@@ -1,4 +1,4 @@
-package es.angelillo15.zangeltags.cmd.removeTag;
+package es.angelillo15.zangeltags.cmd.removetag;
 
 import es.angelillo15.zangeltags.ZAngelTags;
 import es.angelillo15.zangeltags.config.ConfigLoader;
@@ -42,8 +42,8 @@ public class RemoveTag implements CommandExecutor {
     }
 
     public void help(Player p) {
-        p.sendMessage(net.md_5.bungee.api.ChatColor.translateAlternateColorCodes('&', "&6----------------zAngelTags----------------"));
-        p.sendMessage(net.md_5.bungee.api.ChatColor.translateAlternateColorCodes('&', "&bAvailable Command:"));
-        p.sendMessage(net.md_5.bungee.api.ChatColor.translateAlternateColorCodes('&', "&b/removeTag <name>"));
+        p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6----------------zAngelTags----------------"));
+        p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&bAvailable Command:"));
+        p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&b/removeTag <name>"));
     }
 }

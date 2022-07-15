@@ -56,7 +56,7 @@ public class OthersTagSet extends SubCommand {
                     String tag = args[3];
                     if (player.hasPermission(getPermission())) {
                         Player target = Bukkit.getPlayer(args[1]);
-                        if (!(target == null)) {
+                        if (target != null) {
                             if (SQLQuerys.playerInDB(plugin.getConnection(), target.getUniqueId())) {
                                 SQLQuerys.updateData(plugin.getConnection(), target.getUniqueId(), tag);
 

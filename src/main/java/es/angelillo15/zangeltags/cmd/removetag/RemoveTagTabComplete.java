@@ -1,13 +1,10 @@
-package es.angelillo15.zangeltags.cmd.removeTag;
+package es.angelillo15.zangeltags.cmd.removetag;
 
 import es.angelillo15.zangeltags.ZAngelTags;
-import es.angelillo15.zangeltags.database.SQLQuerys;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.configuration.file.FileConfiguration;
-
-import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
