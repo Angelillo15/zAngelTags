@@ -2,7 +2,7 @@ package es.angelillo15.zangeltags.cmd.createtag;
 
 import es.angelillo15.zangeltags.ZAngelTags;
 import es.angelillo15.zangeltags.config.ConfigLoader;
-import es.angelillo15.zangeltags.database.SQLQuerys;
+import es.angelillo15.zangeltags.database.SqlQueries;
 import org.bukkit.Bukkit;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.command.Command;
@@ -30,8 +30,8 @@ public class CreateTag implements CommandExecutor {
                     help(p);
                 } else {
                     if (p.hasPermission("zAngelTags.admin")) {
-                        if (!SQLQuerys.tagExist(plugin.getConnection(), args[0])) {
-                            SQLQuerys.createTag(plugin.getConnection(), args[0], args[1], args[2]);
+                        if (!SqlQueries.tagExist(plugin.getConnection(), args[0])) {
+                            SqlQueries.createTag(plugin.getConnection(), args[0], args[1], args[2]);
                             p.sendMessage(ChatColor.translateAlternateColorCodes('&', ConfigLoader.getMessageConfig().getConfig().getString("Messages.createdTag")));
                             plugin.reloadCache();
                         } else {

@@ -11,7 +11,7 @@ import es.angelillo15.zangeltags.cmd.removetag.RemoveTagTabComplete;
 import es.angelillo15.zangeltags.config.AddConfig;
 import es.angelillo15.zangeltags.config.ConfigLoader;
 import es.angelillo15.zangeltags.database.PluginConnection;
-import es.angelillo15.zangeltags.database.SQLQuerys;
+import es.angelillo15.zangeltags.database.SqlQueries;
 import es.angelillo15.zangeltags.listener.TagsInventoryClickEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -111,17 +111,17 @@ public final class ZAngelTags extends JavaPlugin {
         String type = db.getString("Database.type");
         this.connection = new PluginConnection(host, port, database, user, password, type, this);
         if(type.equalsIgnoreCase("SQLite")){
-            SQLQuerys.createTagsDataSQLiteTable(getConnection());
-            SQLQuerys.createUserDataSQLiteTable(getConnection());
+            SqlQueries.createTagsDataSQLiteTable(getConnection());
+            SqlQueries.createUserDataSQLiteTable(getConnection());
         }else {
-            if (!SQLQuerys.userDatatableCreated(getConnection())) {
+            if (!SqlQueries.userDatatableCreated(getConnection())) {
                 Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', this.prefix + "&6Creating userData table....."));
-                SQLQuerys.createUserDataTables(getConnection());
+                SqlQueries.createUserDataTables(getConnection());
                 Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', this.prefix + "&6userData table succesfully created!"));
             }
-            if (!SQLQuerys.tagsTableCreated(getConnection())) {
+            if (!SqlQueries.tagsTableCreated(getConnection())) {
                 Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', this.prefix + "&6Creating tags table....."));
-                SQLQuerys.createTagsTables(getConnection());
+                SqlQueries.createTagsTables(getConnection());
                 Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', this.prefix + "&6Tags table succesfully created!"));
             }
         }
@@ -151,7 +151,7 @@ public final class ZAngelTags extends JavaPlugin {
 
     //Close the database connection
     public void closeConnection() {
-        SQLQuerys.closeConnection(getConnection());
+        SqlQueries.closeConnection(getConnection());
         Bukkit.getConsoleSender().sendMessage(net.md_5.bungee.api.ChatColor.translateAlternateColorCodes('&', this.prefix + "&6Connection closed"));
     }
 

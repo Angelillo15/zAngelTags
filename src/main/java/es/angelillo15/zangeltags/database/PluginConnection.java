@@ -13,11 +13,9 @@ public class PluginConnection {
     private Connection conection;
 
     private Connection conn;
-    private ZAngelTags plugin;
     private final String type;
 
     public PluginConnection(String host, int port, String database, String user, String password, String type, ZAngelTags plugin) {
-        this.plugin = plugin;
         this.type = type;
         if (type.equalsIgnoreCase("SQLite")) {
 

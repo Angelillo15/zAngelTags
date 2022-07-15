@@ -1,7 +1,7 @@
 package es.angelillo15.zangeltags.cache;
 
 import es.angelillo15.zangeltags.ZAngelTags;
-import es.angelillo15.zangeltags.database.SQLQuerys;
+import es.angelillo15.zangeltags.database.SqlQueries;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -19,10 +19,10 @@ public class TagsCache {
         this.cache.set("Tags", null);
         Connection connection = plugin.getConnection();
 
-        ArrayList<String> tags = SQLQuerys.getTagsName(connection);
+        ArrayList<String> tags = SqlQueries.getTagsName(connection);
         for (String s : tags){
-            String inGameTag = SQLQuerys.getTagInGameTag(connection, s);
-            String permission = SQLQuerys.getTagPermission(connection, s);
+            String inGameTag = SqlQueries.getTagInGameTag(connection, s);
+            String permission = SqlQueries.getTagPermission(connection, s);
             this.cache.set("Tags."+s+".name", s);
             this.cache.set("Tags."+s+".inGameTag", inGameTag);
             this.cache.set("Tags."+s+".permission", permission);

@@ -1,6 +1,6 @@
 package es.angelillo15.zangeltags;
 
-import es.angelillo15.zangeltags.database.SQLQuerys;
+import es.angelillo15.zangeltags.database.SqlQueries;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.entity.Player;
 
@@ -50,10 +50,10 @@ public class PlaceHolderApiExtensions extends PlaceholderExpansion {
         }
 
         if(identifier.equalsIgnoreCase("tag")) {
-            if(SQLQuerys.getTag(plugin.getConnection(), player.getUniqueId()) == "null"){
+            if(SqlQueries.getTag(plugin.getConnection(), player.getUniqueId()) == "null"){
                 return "";
             }else {
-                return SQLQuerys.getTagInGameTag(plugin.getConnection(), SQLQuerys.getTag(plugin.getConnection(), player.getUniqueId()));
+                return SqlQueries.getTagInGameTag(plugin.getConnection(), SqlQueries.getTag(plugin.getConnection(), player.getUniqueId()));
             }
 
         }

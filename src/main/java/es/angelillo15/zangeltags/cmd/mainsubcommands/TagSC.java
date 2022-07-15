@@ -4,7 +4,7 @@ import es.angelillo15.zangeltags.ZAngelTags;
 import es.angelillo15.zangeltags.cmd.commandsmanagers.MainCommandManager;
 import es.angelillo15.zangeltags.cmd.SubCommand;
 import es.angelillo15.zangeltags.config.ConfigLoader;
-import es.angelillo15.zangeltags.database.SQLQuerys;
+import es.angelillo15.zangeltags.database.SqlQueries;
 import es.angelillo15.zangeltags.utils.ColorUtils;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -59,12 +59,12 @@ public class TagSC extends SubCommand {
 
                 if (args[1].equalsIgnoreCase("list")) {
                     if (player.hasPermission("zAngelTags.list")) {
-                        ArrayList<String> sqlList = SQLQuerys.getTagsName(plugin.getConnection());
+                        ArrayList<String> sqlList = SqlQueries.getTagsName(plugin.getConnection());
                         for (String s : sqlList) {
                             ArrayList<String> list = new ArrayList<>();
                             String name = s;
-                            String inGameTag = ColorUtils.translateColorCodes(SQLQuerys.getTagInGameTag(plugin.getConnection(), s));
-                            String permission = SQLQuerys.getTagPermission(plugin.getConnection(), s);
+                            String inGameTag = ColorUtils.translateColorCodes(SqlQueries.getTagInGameTag(plugin.getConnection(), s));
+                            String permission = SqlQueries.getTagPermission(plugin.getConnection(), s);
 
                             List<String> message = (List<String>) messages.getList("Messages.list");
                             for (String c : message) {
@@ -83,14 +83,14 @@ public class TagSC extends SubCommand {
 
                 if (args[1].equalsIgnoreCase("set")) {
                     if (args.length >= 3) {
-                        if (!(SQLQuerys.getTagInGameTag(plugin.getConnection(), args[2]).equals(""))) {
+                        if (!(SqlQueries.getTagInGameTag(plugin.getConnection(), args[2]).equals(""))) {
                             String tag = args[2];
-                            if (player.hasPermission(SQLQuerys.getTagPermission(plugin.getConnection(), tag)) || player.hasPermission("zAngelTags.tags.all")) {
-                                if (SQLQuerys.playerInDB(plugin.getConnection(), player.getUniqueId())) {
-                                    SQLQuerys.updateData(plugin.getConnection(), player.getUniqueId(), tag);
+                            if (player.hasPermission(SqlQueries.getTagPermission(plugin.getConnection(), tag)) || player.hasPermission("zAngelTags.tags.all")) {
+                                if (SqlQueries.playerInDB(plugin.getConnection(), player.getUniqueId())) {
+                                    SqlQueries.updateData(plugin.getConnection(), player.getUniqueId(), tag);
                                     player.sendMessage(ColorUtils.translateColorCodes(selectedTag.replace("{tag}", args[2])));
                                 } else {
-                                    SQLQuerys.insertData(plugin.getConnection(), player.getUniqueId(), tag);
+                                    SqlQueries.insertData(plugin.getConnection(), player.getUniqueId(), tag);
                                     player.sendMessage(ColorUtils.translateColorCodes(selectedTag.replace("{tag}", args[2])));
                                 }
                             } else {
@@ -106,17 +106,17 @@ public class TagSC extends SubCommand {
                 }
 
                 if (args[1].equalsIgnoreCase("disable")) {
-                    SQLQuerys.updateData(plugin.getConnection(), player.getUniqueId(), "");
+                    SqlQueries.updateData(plugin.getConnection(), player.getUniqueId(), "");
                     player.sendMessage(ColorUtils.translateColorCodes(disableTag));
                     return;
                 }
 
                 if (args[1].equalsIgnoreCase("get")) {
                     if (player.hasPermission("zAngelTags.get")) {
-                        if (SQLQuerys.playerInDB(plugin.getConnection(), player.getUniqueId())) {
-                            String tag = SQLQuerys.getTag(plugin.getConnection(), player.getUniqueId());
+                        if (SqlQueries.playerInDB(plugin.getConnection(), player.getUniqueId())) {
+                            String tag = SqlQueries.getTag(plugin.getConnection(), player.getUniqueId());
                             if (!(tag.equals(""))) {
-                                player.sendMessage(ColorUtils.translateColorCodes(messages.getString("Messages.actualTag").replace("{tag}", SQLQuerys.getTagInGameTag(plugin.getConnection(), SQLQuerys.getTag(plugin.getConnection(), player.getUniqueId())))));
+                                player.sendMessage(ColorUtils.translateColorCodes(messages.getString("Messages.actualTag").replace("{tag}", SqlQueries.getTagInGameTag(plugin.getConnection(), SqlQueries.getTag(plugin.getConnection(), player.getUniqueId())))));
                             } else {
                                 player.sendMessage(ColorUtils.translateColorCodes(noTagSelected));
                             }

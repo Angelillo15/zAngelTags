@@ -4,7 +4,7 @@ import es.angelillo15.zangeltags.ZAngelTags;
 import es.angelillo15.zangeltags.cmd.SubCommand;
 import es.angelillo15.zangeltags.cmd.commandsmanagers.MainCommandManager;
 import es.angelillo15.zangeltags.config.ConfigLoader;
-import es.angelillo15.zangeltags.database.SQLQuerys;
+import es.angelillo15.zangeltags.database.SqlQueries;
 import es.angelillo15.zangeltags.utils.ColorUtils;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
@@ -55,9 +55,9 @@ public class OthersTagGet extends SubCommand {
                 if (args[2].equalsIgnoreCase("get")) {
                     Player target = Bukkit.getPlayer(args[1]);
                     if (target != null) {
-                        String tag = SQLQuerys.getTag(plugin.getConnection(), player.getUniqueId());
+                        String tag = SqlQueries.getTag(plugin.getConnection(), player.getUniqueId());
                         if (!(tag.equals(""))) {
-                            player.sendMessage(ColorUtils.translateColorCodes(messages.getString("Messages.actualTag").replace("{tag}", SQLQuerys.getTagInGameTag(plugin.getConnection(), SQLQuerys.getTag(plugin.getConnection(), target.getUniqueId())))));
+                            player.sendMessage(ColorUtils.translateColorCodes(messages.getString("Messages.actualTag").replace("{tag}", SqlQueries.getTagInGameTag(plugin.getConnection(), SqlQueries.getTag(plugin.getConnection(), target.getUniqueId())))));
                         } else {
                             player.sendMessage(ColorUtils.translateColorCodes(noTagSelected));
                         }

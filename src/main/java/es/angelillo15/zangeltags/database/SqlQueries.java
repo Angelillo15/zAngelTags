@@ -6,16 +6,17 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class SQLQuerys {
+public class SqlQueries {
     public static boolean userDatatableCreated(Connection connection) {
         try {
             PreparedStatement statement = connection.prepareStatement("SHOW TABLES LIKE 'userData';");
             ResultSet result = statement.executeQuery();
             return result.next();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            Bukkit.getConsoleSender().sendMessage(String.valueOf(e));
         }
 
+        return false;
     }
 
     public static boolean tagsTableCreated(Connection connection) {
@@ -87,11 +88,7 @@ public class SQLQuerys {
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM userData WHERE UUID=?");
             statement.setString(1, uuid.toString());
             ResultSet result = statement.executeQuery();
-            if (result.next()) {
-                return true;
-            } else {
-                return false;
-            }
+            return result.next();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

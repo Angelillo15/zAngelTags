@@ -2,7 +2,7 @@ package es.angelillo15.zangeltags.cmd.removetag;
 
 import es.angelillo15.zangeltags.ZAngelTags;
 import es.angelillo15.zangeltags.config.ConfigLoader;
-import es.angelillo15.zangeltags.database.SQLQuerys;
+import es.angelillo15.zangeltags.database.SqlQueries;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -27,8 +27,8 @@ public class RemoveTag implements CommandExecutor {
                 help(p);
             } else {
                 if (p.hasPermission("zAngelTags.admin")) {
-                    if (SQLQuerys.tagExist(plugin.getConnection(), args[0])) {
-                        SQLQuerys.removeTag(plugin.getConnection(), args[0]);
+                    if (SqlQueries.tagExist(plugin.getConnection(), args[0])) {
+                        SqlQueries.removeTag(plugin.getConnection(), args[0]);
                         p.sendMessage(ChatColor.translateAlternateColorCodes('&', ConfigLoader.getMessageConfig().getConfig().getString("Messages.deletedTag")));
                         plugin.reloadCache();
 

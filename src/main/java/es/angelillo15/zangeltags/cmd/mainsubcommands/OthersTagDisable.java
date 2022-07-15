@@ -3,7 +3,7 @@ package es.angelillo15.zangeltags.cmd.mainsubcommands;
 import es.angelillo15.zangeltags.ZAngelTags;
 import es.angelillo15.zangeltags.cmd.SubCommand;
 import es.angelillo15.zangeltags.config.ConfigLoader;
-import es.angelillo15.zangeltags.database.SQLQuerys;
+import es.angelillo15.zangeltags.database.SqlQueries;
 import es.angelillo15.zangeltags.utils.ColorUtils;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
@@ -49,7 +49,7 @@ public class OthersTagDisable extends SubCommand {
                 if (args[2].equalsIgnoreCase("disable")) {
                     Player target = Bukkit.getPlayer(args[1]);
                     if (target != null) {
-                        SQLQuerys.updateData(plugin.getConnection(), player.getUniqueId(), "");
+                        SqlQueries.updateData(plugin.getConnection(), player.getUniqueId(), "");
                         player.sendMessage(ColorUtils.translateColorCodes(disableTag));
                     } else {
                         player.sendMessage(ColorUtils.translateColorCodes(offline));

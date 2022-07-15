@@ -4,7 +4,7 @@ import es.angelillo15.zangeltags.ZAngelTags;
 import es.angelillo15.zangeltags.cmd.SubCommand;
 import es.angelillo15.zangeltags.cmd.commandsmanagers.MainCommandManager;
 import es.angelillo15.zangeltags.config.ConfigLoader;
-import es.angelillo15.zangeltags.database.SQLQuerys;
+import es.angelillo15.zangeltags.database.SqlQueries;
 import es.angelillo15.zangeltags.utils.ColorUtils;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
@@ -52,16 +52,16 @@ public class OthersTagSet extends SubCommand {
 
         if (player.hasPermission(getPermission())) {
             if (args.length >= 4) {
-                if (!(SQLQuerys.getTagInGameTag(plugin.getConnection(), args[3]).equals(""))) {
+                if (!(SqlQueries.getTagInGameTag(plugin.getConnection(), args[3]).equals(""))) {
                     String tag = args[3];
                     if (player.hasPermission(getPermission())) {
                         Player target = Bukkit.getPlayer(args[1]);
                         if (target != null) {
-                            if (SQLQuerys.playerInDB(plugin.getConnection(), target.getUniqueId())) {
-                                SQLQuerys.updateData(plugin.getConnection(), target.getUniqueId(), tag);
+                            if (SqlQueries.playerInDB(plugin.getConnection(), target.getUniqueId())) {
+                                SqlQueries.updateData(plugin.getConnection(), target.getUniqueId(), tag);
 
                             } else {
-                                SQLQuerys.insertData(plugin.getConnection(), target.getUniqueId(), tag);
+                                SqlQueries.insertData(plugin.getConnection(), target.getUniqueId(), tag);
                             }
                             player.sendMessage(ColorUtils.translateColorCodes(selectedTag.replace("{tag}", args[3])));
                             target.sendMessage(ColorUtils.translateColorCodes(selectedTag.replace("{tag}", args[3])));
