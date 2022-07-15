@@ -37,7 +37,7 @@ public class SqlQueries {
             statement.executeUpdate();
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            Bukkit.getConsoleSender().sendMessage(String.valueOf(e));
         }
     }
 
