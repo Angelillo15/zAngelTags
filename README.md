@@ -1,4 +1,4 @@
-[![zAngelTags build](https://github.com/Angelillo15/zAngelTags/actions/workflows/spigot.yml/badge.svg)](https://github.com/Angelillo15/zAngelTags/actions/workflows/spigot.yml)
+[![zAngelTags build](https://github.com/Angelillo15/zAngelTags/actions/workflows/spigot.yml/badge.svg)](https://github.com/Angelillo15/zAngelTags/actions/workflows/spigot.yml) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/5eb0b6bf54ea44f0872e61b6263c1383)](https://www.codacy.com/gh/Angelillo15/zAngelTags/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Angelillo15/zAngelTags&amp;utm_campaign=Badge_Grade)
 
 # zAngelTags
 ### Support
