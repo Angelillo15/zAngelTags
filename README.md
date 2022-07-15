@@ -1,3 +1,4 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/e35cbc22d84b416db0d94bb7fc86da9f)](https://app.codacy.com/gh/Angelillo15/zAngelTags?utm_source=github.com&utm_medium=referral&utm_content=Angelillo15/zAngelTags&utm_campaign=Badge_Grade_Settings)
 [![zAngelTags build](https://github.com/Angelillo15/zAngelTags/actions/workflows/spigot.yml/badge.svg)](https://github.com/Angelillo15/zAngelTags/actions/workflows/spigot.yml)
 
 # zAngelTags
