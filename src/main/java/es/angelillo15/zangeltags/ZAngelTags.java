@@ -217,6 +217,7 @@ public final class ZAngelTags extends JavaPlugin {
                     int spigotVer = Integer.parseInt(newVersion.replace(".", ""));
                     int plVer = Integer.parseInt(version.replace(".", ""));
                     if(plVer > spigotVer){
+                        Bukkit.getConsoleSender().sendMessage(ColorUtils.translateColorCodes(getPrefix() + "Running latest version"));
                         return;
                     }
                     if (updater.downloadUpdate()) {
@@ -231,7 +232,7 @@ public final class ZAngelTags extends JavaPlugin {
 
             @Override
             public void upToDate() {
-                getLogger().info(ColorUtils.translateColorCodes(getPrefix() + "Running latest version"));
+                Bukkit.getConsoleSender().sendMessage(ColorUtils.translateColorCodes(getPrefix() + "Running latest version"));
             }
         });
     }

@@ -4,7 +4,6 @@ import es.angelillo15.zangeltags.ZAngelTags;
 import es.angelillo15.zangeltags.config.ConfigLoader;
 import es.angelillo15.zangeltags.database.SqlQueries;
 import es.angelillo15.zangeltags.utils.ColorUtils;
-import org.bukkit.Color;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
