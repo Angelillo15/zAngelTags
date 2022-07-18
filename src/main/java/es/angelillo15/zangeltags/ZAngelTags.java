@@ -12,13 +12,17 @@ import es.angelillo15.zangeltags.config.AddConfig;
 import es.angelillo15.zangeltags.config.ConfigLoader;
 import es.angelillo15.zangeltags.database.PluginConnection;
 import es.angelillo15.zangeltags.database.SqlQueries;
+import es.angelillo15.zangeltags.listener.ChatInjector;
 import es.angelillo15.zangeltags.listener.TagsInventoryClickEvent;
+import es.angelillo15.zangeltags.utils.ColorUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.inventivetalent.update.spiget.SpigetUpdate;
+import org.inventivetalent.update.spiget.UpdateCallback;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -64,8 +68,9 @@ public final class ZAngelTags extends JavaPlugin {
         registerCommand();
         registerEvents();
         registerPlaceholder();
-        updateChecker();
         tagsCache.loadData();
+        downloadUpdate();
+
     }
 
     //Check if the plugin is in the latest update
@@ -147,6 +152,7 @@ public final class ZAngelTags extends JavaPlugin {
     public void registerEvents() {
         PluginManager pm = this.getServer().getPluginManager();
         pm.registerEvents(new TagsInventoryClickEvent(this), this);
+        pm.registerEvents(new ChatInjector(this), this);
     }
 
     //Close the database connection
@@ -182,9 +188,11 @@ public final class ZAngelTags extends JavaPlugin {
         Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', this.prefix + "&6Successfully reloaded the config"));
         dbConnection();
         tagsCache.loadData();
+        downloadUpdate();
         Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', this.prefix + "&6Successfully reloaded the plugin"));
     }
 
+    //Reload cache config
     public void reloadCache() {
         tagsCache.loadData();
     }
@@ -194,6 +202,39 @@ public final class ZAngelTags extends JavaPlugin {
         return this.cl;
     }
 
+    //Download update
+
+    public void downloadUpdate(){
+        if(!(ConfigLoader.getMainConfig().getConfig().getBoolean("Config.autoUpdates"))) {
+            updateChecker();
+            return;
+        }
+        final SpigetUpdate updater = new SpigetUpdate(this, 102952);
+        updater.checkForUpdate(new UpdateCallback() {
+            @Override
+            public void updateAvailable(String newVersion, String downloadUrl, boolean hasDirectDownload) {
+                if (hasDirectDownload) {
+                    int spigotVer = Integer.parseInt(newVersion.replace(".", ""));
+                    int plVer = Integer.parseInt(version.replace(".", ""));
+                    if(plVer > spigotVer){
+                        return;
+                    }
+                    if (updater.downloadUpdate()) {
+                        //Successful update
+                        Bukkit.getConsoleSender().sendMessage(ColorUtils.translateColorCodes(getPrefix() + "Plugin update downloaded in the next server restart will be applied"));
+                    } else {
+                        // Update failed
+                        getLogger().warning("Update download failed, reason is " + updater.getFailReason());
+                    }
+                }
+            }
+
+            @Override
+            public void upToDate() {
+                getLogger().info(ColorUtils.translateColorCodes(getPrefix() + "Running latest version"));
+            }
+        });
+    }
 
     //Plugin disable
     @Override

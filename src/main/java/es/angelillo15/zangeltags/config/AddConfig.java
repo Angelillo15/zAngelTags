@@ -16,6 +16,14 @@ public class AddConfig {
             config.set("Database.type", "MySQL");
             ConfigLoader.getMainConfig().saveConfig();
         }
+
+        if(!(config.contains("Config.injectChat"))){
+            config.set("Config.injectChat", false);
+        }
+
+        if(!(config.contains("Config.autoUpdates"))){
+            config.set("Config.autoUpdates", true);
+        }
     }
 
     public void addMessageConfig(){
