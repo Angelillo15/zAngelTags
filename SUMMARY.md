@@ -15,4 +15,3 @@
 * [💽 MySQL](configuration/mysql/README.md)
   * [🐧 Pterodactyl](configuration/mysql/pterodactyl.md)
   * [🔰 phpmyadmin](configuration/mysql/phpmyadmin.md)
-  * [🎥 MySQL Command Line](configuration/mysql/mysql-command-line.md)
