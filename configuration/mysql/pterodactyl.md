@@ -10,7 +10,7 @@ Then click new database and put the name that you want and connection from your 
 
 Then click on create database and go to your panel and you would have the following data
 
-![](<../../.gitbook/assets/image (6).png>)
+![](<../../.gitbook/assets/image (7).png>)
 
 The first param is the database name, the second is the ip, the third is the database username.
 
