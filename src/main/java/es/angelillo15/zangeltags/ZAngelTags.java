@@ -21,8 +21,8 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.inventivetalent.update.spiget.SpigetUpdate;
-import org.inventivetalent.update.spiget.UpdateCallback;
+import es.angelillo15.zangeltags.spiget.SpigetUpdate;
+import es.angelillo15.zangeltags.spiget.UpdateCallback;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
