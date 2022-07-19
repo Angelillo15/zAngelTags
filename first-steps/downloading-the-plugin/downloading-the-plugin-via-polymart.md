@@ -6,5 +6,5 @@ To download zAngelTags, you just need to [click here](https://polymart.org/resou
 
 Then, you just need to click on the Download Now button to download the latest version of my plugin. Then, the plugin will be downloaded to your computer's downloads folder.
 
-![zAngelTags page on Polymart](<../../.gitbook/assets/image (5).png>)
+![zAngelTags page on Polymart](<../../.gitbook/assets/image (5) (1).png>)
 
