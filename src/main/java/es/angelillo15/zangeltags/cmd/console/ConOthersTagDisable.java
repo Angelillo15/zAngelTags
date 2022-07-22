@@ -1,4 +1,4 @@
-package es.angelillo15.zangeltags.cmd.mainsubcommands;
+package es.angelillo15.zangeltags.cmd.console;
 
 import es.angelillo15.zangeltags.ZAngelTags;
 import es.angelillo15.zangeltags.cmd.SubCommand;
@@ -10,10 +10,10 @@ import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
-public class OthersTagDisable extends SubCommand {
+public class ConOthersTagDisable extends SubCommand {
     private ZAngelTags plugin;
 
-    public OthersTagDisable(ZAngelTags plugin) {
+    public ConOthersTagDisable(ZAngelTags plugin) {
         this.plugin = plugin;
     }
 
@@ -41,23 +41,19 @@ public class OthersTagDisable extends SubCommand {
     public void execute(Player player, String[] args) {
         FileConfiguration messages = ConfigLoader.getMessageConfig().getConfig();
 
-        String noPerm = ChatColor.translateAlternateColorCodes('&', messages.getString("Messages.noPerm"));
         String offline = messages.getString("Messages.offline");
         String disableTag = messages.getString("Messages.disableTag");
-        if (player.hasPermission(getPermission())) {
-            if (args.length == 3) {
-                if (args[2].equalsIgnoreCase("disable")) {
-                    Player target = Bukkit.getPlayer(args[1]);
-                    if (target != null) {
-                        SqlQueries.updateData(plugin.getConnection(), target.getUniqueId(), "");
-                        target.sendMessage(ColorUtils.translateColorCodes(disableTag));
-                    } else {
-                        player.sendMessage(ColorUtils.translateColorCodes(offline));
-                    }
+        if (args.length == 3) {
+            if (args[2].equalsIgnoreCase("disable")) {
+                Player target = Bukkit.getPlayer(args[1]);
+                if (target != null) {
+                    SqlQueries.updateData(plugin.getConnection(), target.getUniqueId(), "");
+                    Bukkit.getConsoleSender().sendMessage(ColorUtils.translateColorCodes(disableTag));
+                    target.sendMessage(ColorUtils.translateColorCodes(disableTag));
+                } else {
+                    Bukkit.getConsoleSender().sendMessage(ColorUtils.translateColorCodes(offline));
                 }
             }
-        } else {
-            player.sendMessage(ColorUtils.translateColorCodes(noPerm));
         }
     }
 }

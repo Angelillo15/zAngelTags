@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+
 public class PluginConnection {
 
     private Connection conection;
@@ -15,9 +16,17 @@ public class PluginConnection {
     private Connection conn;
     private final String type;
 
+
+
+
     public PluginConnection(String host, int port, String database, String user, String password, String type, ZAngelTags plugin) {
         this.type = type;
         if (type.equalsIgnoreCase("SQLite")) {
+            try {
+                Class.forName("org.sqlite.JDBC");
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
 
             try {
                 String path = plugin.getDataFolder().getAbsolutePath() + "/database.db";

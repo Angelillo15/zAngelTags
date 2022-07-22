@@ -1,4 +1,4 @@
-package es.angelillo15.zangeltags.cmd.mainsubcommands;
+package es.angelillo15.zangeltags.cmd.console;
 
 import es.angelillo15.zangeltags.ZAngelTags;
 import es.angelillo15.zangeltags.cmd.SubCommand;
@@ -11,13 +11,11 @@ import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
-
-public class OthersTagGet extends SubCommand {
+public class ConOthersTagSet extends SubCommand {
     ZAngelTags plugin;
     MainCommandManager mainCommandManager;
 
-
-    public OthersTagGet(ZAngelTags plugin, MainCommandManager mainCommandManager) {
+    public ConOthersTagSet(ZAngelTags plugin, MainCommandManager mainCommandManager) {
         this.plugin = plugin;
         this.mainCommandManager = mainCommandManager;
     }
@@ -29,12 +27,12 @@ public class OthersTagGet extends SubCommand {
 
     @Override
     public String getDescription() {
-        return "get a player tag";
+        return "Set a player tag";
     }
 
     @Override
     public String getSyntax() {
-        return "/zat player <Player> get";
+        return "/zat player <Player> set <tag>";
     }
 
     @Override
@@ -46,28 +44,29 @@ public class OthersTagGet extends SubCommand {
     public void execute(Player player, String[] args) {
         FileConfiguration messages = ConfigLoader.getMessageConfig().getConfig();
 
-        String noTagSelected = messages.getString("Messages.noTagSelected");
+        String dontExist = messages.getString("Messages.dontExist");
+        String selectedTag = messages.getString("Messages.selectedTag");
         String noPerm = ChatColor.translateAlternateColorCodes('&', messages.getString("Messages.noPerm"));
         String offline = messages.getString("Messages.offline");
-
-        if (player.hasPermission(getPermission())) {
-            if (args.length == 3) {
-                if (args[2].equalsIgnoreCase("get")) {
+        if (args.length >= 4) {
+            if (!(SqlQueries.getTagInGameTag(plugin.getConnection(), args[3]).equals(""))) {
+                String tag = args[3];
                     Player target = Bukkit.getPlayer(args[1]);
                     if (target != null) {
-                        String tag = SqlQueries.getTag(plugin.getConnection(), target.getUniqueId());
-                        if (!(tag.equals(""))) {
-                            player.sendMessage(ColorUtils.translateColorCodes(messages.getString("Messages.actualTag").replace("{tag}", SqlQueries.getTagInGameTag(plugin.getConnection(), SqlQueries.getTag(plugin.getConnection(), target.getUniqueId())))));
+                        if (SqlQueries.playerInDB(plugin.getConnection(), target.getUniqueId())) {
+                            SqlQueries.updateData(plugin.getConnection(), target.getUniqueId(), tag);
+
                         } else {
-                            player.sendMessage(ColorUtils.translateColorCodes(noTagSelected));
+                            SqlQueries.insertData(plugin.getConnection(), target.getUniqueId(), tag);
                         }
+                        Bukkit.getConsoleSender().sendMessage((ColorUtils.translateColorCodes(selectedTag.replace("{tag}", args[3]))));
+                        target.sendMessage(ColorUtils.translateColorCodes(selectedTag.replace("{tag}", args[3])));
                     } else {
-                        player.sendMessage(ColorUtils.translateColorCodes(offline));
+                        Bukkit.getConsoleSender().sendMessage(ColorUtils.translateColorCodes(offline));
                     }
-                }
+            } else {
+                 Bukkit.getConsoleSender().sendMessage(ColorUtils.translateColorCodes(dontExist));
             }
-        } else {
-            player.sendMessage(ColorUtils.translateColorCodes(noPerm));
         }
     }
 }

@@ -31,7 +31,16 @@ public class CreateTag implements CommandExecutor {
                 } else {
                     if (p.hasPermission("zAngelTags.admin")) {
                         if (!SqlQueries.tagExist(plugin.getConnection(), args[0])) {
-                            SqlQueries.createTag(plugin.getConnection(), args[0], args[1], args[2]);
+                            String tag = "";
+                            for (int i = 2; i < args.length; i++){
+                                if(tag == ""){
+                                    tag = tag + args[i];
+                                }else {
+                                    tag = tag + " " + args[i];
+                                }
+
+                            }
+                            SqlQueries.createTag(plugin.getConnection(), args[0], tag, args[1]);
                             p.sendMessage(ChatColor.translateAlternateColorCodes('&', ConfigLoader.getMessageConfig().getConfig().getString("Messages.createdTag")));
                             plugin.reloadCache();
                         } else {

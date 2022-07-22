@@ -18,11 +18,11 @@ public class CreateTagTabComplete implements TabCompleter {
             arguments.add("<Tag_name>");
         }
         if(arguments2.isEmpty()){
-            arguments2.add("<Tag_formated>");
+            arguments2.add("<permission>");
+            arguments2.add("zAngelTags.tag.example");
         }
         if(arguments3.isEmpty()){
-            arguments3.add("<permission>");
-            arguments3.add("zAngelTags.tag.example");
+            arguments3.add("<Tag_formated>");
         }
 
         if(args.length == 1) {

@@ -2,6 +2,10 @@ package es.angelillo15.zangeltags.cmd.commandsmanagers;
 
 import es.angelillo15.zangeltags.ZAngelTags;
 import es.angelillo15.zangeltags.cmd.SubCommand;
+import es.angelillo15.zangeltags.cmd.console.ConOthersTagDisable;
+import es.angelillo15.zangeltags.cmd.console.ConOthersTagGet;
+import es.angelillo15.zangeltags.cmd.console.ConOthersTagSet;
+import es.angelillo15.zangeltags.cmd.console.ConReloadSC;
 import es.angelillo15.zangeltags.cmd.mainsubcommands.*;
 import es.angelillo15.zangeltags.gui.TagsGui;
 import es.angelillo15.zangeltags.utils.ColorUtils;
@@ -17,6 +21,8 @@ import java.util.ArrayList;
 public class MainCommandManager implements CommandExecutor {
     private ArrayList<SubCommand> subcommands = new ArrayList<>();
 
+    private ArrayList<SubCommand> consoleSubcommands = new ArrayList<>();
+
     private ZAngelTags plugin;
 
     public MainCommandManager(ZAngelTags plugin) {
@@ -29,6 +35,11 @@ public class MainCommandManager implements CommandExecutor {
         this.subcommands.add(new OthersTagSet(plugin, this));
         this.subcommands.add(new OthersTagGet(plugin, this));
         this.subcommands.add(new OthersTagDisable(plugin));
+
+        this.consoleSubcommands.add(new ConReloadSC(plugin));
+        this.consoleSubcommands.add(new ConOthersTagDisable(plugin));
+        this.consoleSubcommands.add(new ConOthersTagGet(plugin, this));
+        this.consoleSubcommands.add(new ConOthersTagSet(plugin, this));
     }
 
     @Override
@@ -47,14 +58,17 @@ public class MainCommandManager implements CommandExecutor {
             }
 
         } else {
-            if (args.length < 1) {
-                consoleHelp();
+            if (args.length > 0) {
+                for (int i = 0; i < getConsoleSubcommands().size(); i++) {
+                    if (args[0].equalsIgnoreCase(getConsoleSubcommands().get(i).getName())) {
+                        getConsoleSubcommands().get(i).execute(null, args);
+                    }
+                }
             } else {
-                if (args[0].equalsIgnoreCase("reload")) {
-                    plugin.reload();
-                    Bukkit.getConsoleSender().sendMessage(ColorUtils.translateColorCodes(plugin.getPrefix() + "Reloaded"));
-                } else {
-                    consoleHelp();
+                Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&6----------------zAngelTags----------------"));
+                Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&bAvailable Commands:"));
+                for(SubCommand csb : getConsoleSubcommands()){
+                    Bukkit.getConsoleSender().sendMessage(ColorUtils.translateColorCodes("&b" + csb.getSyntax() + " &8&l» &f " + csb.getDescription()));
                 }
             }
         }
@@ -65,10 +79,9 @@ public class MainCommandManager implements CommandExecutor {
         return subcommands;
     }
 
-    public void consoleHelp() {
-        Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&6----------------zAngelTags----------------"));
-        Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&bAvailable Commands:"));
-        Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&bzAngelTags reload &8&l» &f To reload the plugin"));
+    public ArrayList<SubCommand> getConsoleSubcommands(){
+        return consoleSubcommands;
     }
+
 
 }

@@ -9,9 +9,6 @@ plugins {
 
 repositories {
     mavenLocal()
-    maven {
-        url = uri('https://repo.inventivetalent.org/content/groups/public/')
-    }
 
     maven {
         url = uri('https://hub.spigotmc.org/nexus/content/repositories/snapshots/')
@@ -31,10 +28,10 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.inventivetalent.spiget-update:bukkit:1.4.6-SNAPSHOT'
     compileOnly 'org.spigotmc:spigot-api:1.13-R0.1-SNAPSHOT'
     compileOnly 'me.clip:placeholderapi:2.11.1'
     compileOnly 'net.md-5:bungeecord-chat:1.16-R0.4'
+    implementation 'com.google.code.gson:gson:2.8.9'
 }
 
 group = 'es.angelillo15'
