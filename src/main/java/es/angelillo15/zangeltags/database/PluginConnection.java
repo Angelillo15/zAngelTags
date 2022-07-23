@@ -49,7 +49,7 @@ public class PluginConnection {
                         return;
                     }
                     Class.forName("com.mysql.jdbc.Driver");
-                    this.conection = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + database, user, password);
+                    this.conection = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + database + "?autoReconnect=true&useUnicode=yes", user, password);
                     Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&b「zAngelTags」&6Successfully connected to Database"));
 
                 }

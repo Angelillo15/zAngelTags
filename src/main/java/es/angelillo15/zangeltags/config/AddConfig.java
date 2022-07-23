@@ -19,16 +19,19 @@ public class AddConfig {
 
         if(!(config.contains("Config.injectChat"))){
             config.set("Config.injectChat", false);
+            ConfigLoader.getMainConfig().saveConfig();
         }
 
         if(!(config.contains("Config.autoUpdates"))){
             config.set("Config.autoUpdates", true);
+            ConfigLoader.getMainConfig().saveConfig();
         }
     }
 
     public void addMessageConfig(){
         if(!(msg.contains("Messages.offline"))){
             msg.set("Messages.offline", "&b「zAngelTags」&4The player is offline");
+            ConfigLoader.getMessageConfig().saveConfig();
         }
     }
 }
