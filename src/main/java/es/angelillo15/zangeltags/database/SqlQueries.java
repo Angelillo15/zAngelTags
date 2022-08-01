@@ -11,7 +11,9 @@ public class SqlQueries {
         try {
             PreparedStatement statement = connection.prepareStatement("SHOW TABLES LIKE 'userData';");
             ResultSet result = statement.executeQuery();
-            return result.next();
+            boolean rb = result.next();
+            statement.close();
+            return rb;
         } catch (SQLException e) {
             Bukkit.getConsoleSender().sendMessage(String.valueOf(e));
         }
@@ -23,7 +25,9 @@ public class SqlQueries {
         try {
             PreparedStatement statement = connection.prepareStatement("SHOW TABLES LIKE 'tags';");
             ResultSet result = statement.executeQuery();
-            return result.next();
+            boolean rb = result.next();
+            statement.close();
+            return rb;
         } catch (SQLException e) {
             Bukkit.getConsoleSender().sendMessage(String.valueOf(e));
         }
@@ -33,8 +37,9 @@ public class SqlQueries {
 
     public static void createUserDataTables(Connection connection) {
         try {
-            PreparedStatement statement = connection.prepareStatement("CREATE TABLE `userData` (`ID` INT(11) NOT NULL AUTO_INCREMENT,`UUID` VARCHAR(50) NULL DEFAULT '' COLLATE 'utf8mb4_general_ci',`Tag` VARCHAR(100) NULL DEFAULT '' COLLATE 'utf8mb4_general_ci',PRIMARY KEY (`ID`) USING BTREE)");
+            PreparedStatement statement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS `userData` (`ID` INT(11) NOT NULL AUTO_INCREMENT,`UUID` VARCHAR(50) NULL DEFAULT '' COLLATE 'utf8mb4_general_ci',`Tag` VARCHAR(100) NULL DEFAULT '' COLLATE 'utf8mb4_general_ci',PRIMARY KEY (`ID`) USING BTREE)");
             statement.executeUpdate();
+            statement.close();
 
         } catch (SQLException e) {
             Bukkit.getConsoleSender().sendMessage(String.valueOf(e));
@@ -43,8 +48,9 @@ public class SqlQueries {
 
     public static void createTagsTables(Connection connection) {
         try {
-            PreparedStatement statement = connection.prepareStatement("CREATE TABLE `tags` (`name` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',`inGameTag` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',`permission` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci');");
+            PreparedStatement statement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS `tags` (`name` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',`inGameTag` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',`permission` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci');");
             statement.executeUpdate();
+            statement.close();
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -55,6 +61,7 @@ public class SqlQueries {
         try {
             PreparedStatement statement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS 'userData' ('ID' INTEGER, 'UUID' TEXT, 'Tag' TEXT, PRIMARY KEY('ID' AUTOINCREMENT));");
             statement.executeUpdate();
+            statement.close();
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -64,6 +71,7 @@ public class SqlQueries {
         try {
             PreparedStatement statement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS 'tags' ('name' TEXT, 'inGameTag' TEXT, 'permission' TEXT);");
             statement.executeUpdate();
+            statement.close();
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -77,6 +85,7 @@ public class SqlQueries {
             statement.setString(1, uuid.toString());
             statement.setString(2, tag);
             statement.executeUpdate();
+            statement.close();
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -88,7 +97,11 @@ public class SqlQueries {
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM userData WHERE UUID=?");
             statement.setString(1, uuid.toString());
             ResultSet result = statement.executeQuery();
-            return result.next();
+            boolean rb = result.next();
+            statement.close();
+
+            return rb;
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -99,7 +112,9 @@ public class SqlQueries {
             PreparedStatement statement = connection.prepareStatement("UPDATE `userData` SET `Tag` = ? WHERE UUID=?");
             statement.setString(1, tag);
             statement.setString(2, uuid.toString());
+
             statement.executeUpdate();
+            statement.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -111,9 +126,11 @@ public class SqlQueries {
 
             statement.setString(1, uuid.toString());
             ResultSet result = statement.executeQuery();
+
             if (result.next()) {
                 String tag = result.getString("Tag");
 
+                statement.close();
                 return tag;
             }
 
@@ -142,6 +159,7 @@ public class SqlQueries {
             while (result.next()) {
                 list.add(result.getString(1));
             }
+            statement.close();
             return list;
         } catch (SQLException e) {
             Bukkit.getConsoleSender().sendMessage(String.valueOf(e));
@@ -157,6 +175,7 @@ public class SqlQueries {
             while (result.next()) {
                 list.add(result.getString(2));
             }
+            statement.close();
             return list;
         } catch (SQLException e) {
             Bukkit.getConsoleSender().sendMessage(String.valueOf(e));
@@ -172,6 +191,7 @@ public class SqlQueries {
             while (result.next()) {
                 list.add(result.getString(2));
             }
+            statement.close();
             return list;
         } catch (SQLException e) {
             Bukkit.getConsoleSender().sendMessage(String.valueOf(e));
@@ -185,7 +205,9 @@ public class SqlQueries {
             statement.setString(1, tag);
             ResultSet result = statement.executeQuery();
             if(result.next()){
-                return result.getString("inGameTag");
+                String resultString = result.getString("inGameTag");
+                statement.close();
+                return resultString;
             }else {
                 return "";
             }
@@ -200,9 +222,12 @@ public class SqlQueries {
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM `tags` WHERE (name=?)");
             statement.setString(1, tag);
             ResultSet result = statement.executeQuery();
+            String rs = result.getString("permission")
             if(result.next()){
-                return result.getString("permission");
+                statement.close();
+                return rs;
             }else {
+                statement.close();
                 return "";
             }
 
@@ -219,6 +244,7 @@ public class SqlQueries {
             statement.setString(2, inGameTag);
             statement.setString(3, permission);
             statement.executeUpdate();
+            statement.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -229,6 +255,7 @@ public class SqlQueries {
             statement.setString(1, tag);
 
             statement.executeUpdate();
+            statement.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -238,7 +265,9 @@ public class SqlQueries {
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM `tags` WHERE (name=?)");
             statement.setString(1, name);
             ResultSet resultSet = statement.executeQuery();
-            return resultSet.next();
+            boolean rb = resultSet.next();
+            statement.close();
+            return rb;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

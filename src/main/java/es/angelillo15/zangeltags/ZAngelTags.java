@@ -29,6 +29,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.SQLException;
 
 
 public final class ZAngelTags extends JavaPlugin {
@@ -240,6 +241,11 @@ public final class ZAngelTags extends JavaPlugin {
     //Plugin disable
     @Override
     public void onDisable() {
-        closeConnection();
+        Bukkit.getConsoleSender().sendMessage(ColorUtils.translateColorCodes(prefix + "Disabling plugin"));
+        try {
+            connection.getConection().close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
