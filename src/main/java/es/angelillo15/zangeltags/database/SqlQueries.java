@@ -222,7 +222,7 @@ public class SqlQueries {
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM `tags` WHERE (name=?)");
             statement.setString(1, tag);
             ResultSet result = statement.executeQuery();
-            String rs = result.getString("permission")
+            String rs = result.getString("permission");
             if(result.next()){
                 statement.close();
                 return rs;
