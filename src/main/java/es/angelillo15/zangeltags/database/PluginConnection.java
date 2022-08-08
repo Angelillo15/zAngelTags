@@ -44,16 +44,13 @@ public class PluginConnection {
         } else {
             try {
                 synchronized (this) {
-                    if (conection != null && !conection.isClosed()) {
-                        Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&6&l[zAngelTags] &6Error connecting to database"));
-                        return;
-                    }
                     Class.forName("com.mysql.jdbc.Driver");
                     this.conection = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + database + "?autoReconnect=true&useUnicode=yes", user, password);
                     Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&b「zAngelTags」&6Successfully connected to Database"));
 
                 }
             } catch (SQLException | ClassNotFoundException e) {
+                Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&6&l[zAngelTags] &6Error connecting to database"));
                 Bukkit.getConsoleSender().sendMessage(String.valueOf(e));
 
             }

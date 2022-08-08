@@ -1,1 +1,0 @@
-maven\bin\mvn.cmd clean package
