@@ -6,7 +6,7 @@ if you have any trouble you can visit my [discord](https://discord.angelillo15.e
 ### Building
 If you want to build the plugin you can do it with the following command
 ```sh
-mvn clean package
+./gradlew clean shadowJar
 ```
 
 ### Contribute
