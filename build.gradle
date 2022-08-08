@@ -38,14 +38,14 @@ repositories {
 
 dependencies {
     implementation 'com.google.code.gson:gson:2.9.0'
-    implementation 'org.xerial:sqlite-jdbc:3.36.0.3'
+    implementation 'org.xerial:sqlite-jdbc:3.8.7'
     compileOnly 'org.spigotmc:spigot-api:1.13-R0.1-SNAPSHOT'
     compileOnly 'me.clip:placeholderapi:2.11.1'
     compileOnly 'net.md-5:bungeecord-chat:1.16-R0.4'
 }
 
 group = 'es.angelillo15'
-version = '4.2'
+version = '4.3'
 description = 'ZAngelTags'
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 

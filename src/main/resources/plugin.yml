@@ -7,6 +7,8 @@ authors: [ Angelillo15 ]
 description: Tags plugin
 website: angelillo15.es
 softdepend: [PlaceholderAPI]
+libraries:
+  - org.xerial:sqlite-jdbc:3.36.0.3
 commands:
   zat:
     description: Main Command of the plugin
