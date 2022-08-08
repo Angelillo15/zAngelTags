@@ -13,11 +13,13 @@ import es.angelillo15.zangeltags.config.ConfigLoader;
 import es.angelillo15.zangeltags.database.PluginConnection;
 import es.angelillo15.zangeltags.database.SqlQueries;
 import es.angelillo15.zangeltags.listener.ChatInjector;
+import es.angelillo15.zangeltags.listener.JoinEvent;
 import es.angelillo15.zangeltags.listener.TagsInventoryClickEvent;
 import es.angelillo15.zangeltags.utils.ColorUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -154,6 +156,9 @@ public final class ZAngelTags extends JavaPlugin {
         PluginManager pm = this.getServer().getPluginManager();
         pm.registerEvents(new TagsInventoryClickEvent(this), this);
         pm.registerEvents(new ChatInjector(this), this);
+        if(ConfigLoader.getMainConfig().getConfig().getBoolean("Config.defaultTag")){
+            pm.registerEvents(new JoinEvent(this), this);
+        }
     }
 
     //Close the database connection
@@ -190,6 +195,8 @@ public final class ZAngelTags extends JavaPlugin {
         dbConnection();
         tagsCache.loadData();
         downloadUpdate();
+        HandlerList.unregisterAll();
+        registerEvents();
         Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', this.prefix + "&6Successfully reloaded the plugin"));
     }
 

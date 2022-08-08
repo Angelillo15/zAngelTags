@@ -26,6 +26,11 @@ public class AddConfig {
             config.set("Config.autoUpdates", true);
             ConfigLoader.getMainConfig().saveConfig();
         }
+        if(!(config.contains("Config.defaultTag"))){
+            config.set("Config.defaultTag", false);
+            config.set("Config.defaultTagName", "<tag_name>");
+            ConfigLoader.getMainConfig().saveConfig();
+        }
     }
 
     public void addMessageConfig(){
