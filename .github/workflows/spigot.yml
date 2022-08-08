@@ -31,8 +31,9 @@ jobs:
     
       - name: Execute Gradle build
         run: |
+          chmod +x gradlew
           ./gradlew shadowJar
-          mkdir staging && cp target/*.jar staging
+          mkdir staging && cp build/libs/*.jar staging
       - name: Upload the jar
         uses: actions/upload-artifact@v2
         with:
