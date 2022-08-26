@@ -5,14 +5,20 @@
 plugins {
     id 'java'
     id 'maven-publish'
-    id'com.github.johnrengelman.shadow' version '5.2.0'
+    id 'com.github.johnrengelman.shadow' version '5.2.0'
+}
+
+jar {
+    manifest {
+        attributes("Class-Path": "./libs/sqlite-jdbc-3.39.2.1.jar ./libs/gson-2.9.1.jar")
+    }
 }
 
 configurations {
     jar.archiveName = 'submodule-jar.jar'
 }
 
-shadowJar{
+shadowJar {
     archiveFileName = "zAngelTags.jar"
 }
 
@@ -37,11 +43,12 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.google.code.gson:gson:2.9.0'
-    implementation 'org.xerial:sqlite-jdbc:3.8.7'
+    compileOnly 'com.google.code.gson:gson:2.9.0'
+    compileOnly 'org.xerial:sqlite-jdbc:3.39.2.1'
     compileOnly 'org.spigotmc:spigot-api:1.13-R0.1-SNAPSHOT'
     compileOnly 'me.clip:placeholderapi:2.11.1'
     compileOnly 'net.md-5:bungeecord-chat:1.16-R0.4'
+
 }
 
 group = 'es.angelillo15'

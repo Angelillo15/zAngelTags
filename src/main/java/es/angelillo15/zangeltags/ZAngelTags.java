@@ -37,6 +37,7 @@ import java.sql.SQLException;
 public final class ZAngelTags extends JavaPlugin {
     //Connection
     private PluginConnection connection;
+    public static ZAngelTags plugin = null;
     //plugin prefix
     private String prefix = "&b「zAngelTags」";
     PluginDescriptionFile pdf = this.getDescription();
@@ -52,6 +53,10 @@ public final class ZAngelTags extends JavaPlugin {
     int pluginId = 15601;
     Metrics metrics = new Metrics(this, pluginId);
     public TagsCache tagsCache = new TagsCache(this);
+
+    public ZAngelTags() {
+        plugin = this;
+    }
 
     //Plugin enable
     @Override

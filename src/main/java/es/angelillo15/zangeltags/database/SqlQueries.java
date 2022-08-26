@@ -1,6 +1,10 @@
 package es.angelillo15.zangeltags.database;
 
+import es.angelillo15.zangeltags.ZAngelTags;
 import org.bukkit.Bukkit;
+import org.bukkit.plugin.Plugin;
+import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scheduler.BukkitScheduler;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -22,7 +26,7 @@ public class SqlQueries {
 
     public static boolean tagsTableCreated(Connection connection) {
         try (PreparedStatement statement = connection.prepareStatement("SHOW TABLES LIKE 'tags';")) {
-            ;
+
             ResultSet result = statement.executeQuery();
             return result.next();
         } catch (SQLException e) {
