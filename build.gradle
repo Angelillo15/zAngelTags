@@ -49,7 +49,7 @@ dependencies {
 }
 
 group = 'es.angelillo15'
-version = '4.3'
+version = '4.4'
 description = 'ZAngelTags'
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 

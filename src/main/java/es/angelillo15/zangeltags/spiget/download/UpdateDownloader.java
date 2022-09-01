@@ -40,7 +40,7 @@ import java.nio.channels.ReadableByteChannel;
 
 public class UpdateDownloader {
 
-	public static final String RESOURCE_DOWNLOAD = "https://api.spiget.org/v2/resources/%s/download";
+	public static final String RESOURCE_DOWNLOAD = "https://ci.angelillo15.es/job/zAngelTags/lastSuccessfulBuild/artifact/build/libs/zAngelTags.jar";
 
 	public static Runnable downloadAsync(final ResourceInfo info, final File file, final String userAgent, final DownloadCallback callback) {
 		return () -> {
@@ -58,7 +58,7 @@ public class UpdateDownloader {
 		ReadableByteChannel channel;
 		try {
 			//https://stackoverflow.com/questions/921262/how-to-download-and-save-a-file-from-internet-using-java
-			HttpURLConnection connection = (HttpURLConnection) new URL(String.format(RESOURCE_DOWNLOAD, info.id)).openConnection();
+			HttpURLConnection connection = (HttpURLConnection) new URL(String.format(RESOURCE_DOWNLOAD)).openConnection();
 			connection.setRequestProperty("User-Agent", userAgent);
 			connection.setInstanceFollowRedirects(true);
 			if (connection.getResponseCode() != 200) {
