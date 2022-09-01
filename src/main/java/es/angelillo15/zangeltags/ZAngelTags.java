@@ -173,7 +173,7 @@ public final class ZAngelTags extends JavaPlugin {
     }
 
     public Connection getConnection() {
-        return this.connection.getConection();
+        return this.connection.getConnection();
     }
 
     //This function returns the prefix of the plugin
@@ -255,7 +255,7 @@ public final class ZAngelTags extends JavaPlugin {
     public void onDisable() {
         Bukkit.getConsoleSender().sendMessage(ColorUtils.translateColorCodes(prefix + "Disabling plugin"));
         try {
-            connection.getConection().close();
+            connection.getConnection().close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

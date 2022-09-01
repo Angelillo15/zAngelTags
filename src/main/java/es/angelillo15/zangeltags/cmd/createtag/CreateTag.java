@@ -57,6 +57,6 @@ public class CreateTag implements CommandExecutor {
     public void help(Player p) {
         p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6----------------zAngelTags----------------"));
         p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&bAvailable Command:"));
-        p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&b/createTag <name> <tag_formatted> <permission>"));
+        p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&b/createTag <name> <permission> <tag_formatted> "));
     }
 }

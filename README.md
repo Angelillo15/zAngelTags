@@ -15,3 +15,5 @@ if you want to contribute the plugin you have many ways to do it the easiest is 
 [![zAngelTags build](https://github.com/Angelillo15/zAngelTags/actions/workflows/spigot.yml/badge.svg)](https://github.com/Angelillo15/zAngelTags/actions/workflows/spigot.yml) 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/5eb0b6bf54ea44f0872e61b6263c1383)](https://www.codacy.com/gh/Angelillo15/zAngelTags/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Angelillo15/zAngelTags&amp;utm_campaign=Badge_Grade)
 [![Discord](https://discordapp.com/api/guilds/918181438879305748/widget.png)](https://discord.angelillo15.es)
+# ​
+© Angelillo15 2022
