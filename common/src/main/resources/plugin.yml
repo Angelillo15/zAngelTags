@@ -1,0 +1,9 @@
+name: zAngelTags
+version: '${version}'
+main: es.angelillo15.zangeltags.ZAngelTags
+api-version: 1.16
+prefix: zAngelTags
+authors: [ Angelillo15 ]
+description: Tags plugin
+website: angelillo15.es
+softdepend: [PlaceholderAPI]

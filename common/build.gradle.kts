@@ -6,7 +6,6 @@ group = "es.angelillo15"
 version = "4.4"
 
 repositories {
-    mavenCentral()
 }
 
 dependencies {
