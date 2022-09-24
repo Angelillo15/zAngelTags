@@ -1,6 +1,6 @@
 name: zAngelTags
-version: '${version}'
-main: es.angelillo15.zangeltags.ZAngelTags
+version: '$version'
+main: es.angelillo15.zangeltags.bukkit.ZAngelTags
 api-version: 1.16
 prefix: zAngelTags
 authors: [ Angelillo15 ]

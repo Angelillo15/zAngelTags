@@ -28,5 +28,7 @@ tasks.withType<JavaCompile> {
 }
 
 tasks.processResources {
-    expand("{version}" to project.version)
+    filesMatching("plugin.yml") {
+        expand("version" to (parent?.version ?: project.version))
+    }
 }
