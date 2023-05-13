@@ -1,13 +1,17 @@
 package es.angelillo15.zat;
 
+import es.angelillo15.zat.api.Constants;
 import es.angelillo15.zat.api.ILogger;
 import es.angelillo15.zat.api.TagsInstance;
+import es.angelillo15.zat.api.TextUtils;
+import es.angelillo15.zat.utils.BukkitLogger;
 import lombok.Getter;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class TagsPlugin extends JavaPlugin implements TagsInstance {
     @Getter
     private static TagsPlugin instance;
+    private static ILogger pLogger;
 
     public TagsPlugin() {
         instance = this;
@@ -15,7 +19,7 @@ public class TagsPlugin extends JavaPlugin implements TagsInstance {
 
     @Override
     public ILogger getPLogger() {
-        return null;
+        return pLogger;
     }
 
     @Override
@@ -25,7 +29,12 @@ public class TagsPlugin extends JavaPlugin implements TagsInstance {
 
     @Override
     public void drawLogo() {
-
+        pLogger.info(TextUtils.simpleColorize("&a ·▄▄▄▄• ▄▄▄·  ▐ ▄  ▄▄ • ▄▄▄ .▄▄▌  ▄▄▄▄▄ ▄▄▄·  ▄▄ • .▄▄ ·  "));
+        pLogger.info(TextUtils.simpleColorize("&a ▪▀·.█▌▐█ ▀█ •█▌▐█▐█ ▀ ▪▀▄.▀·██•  •██  ▐█ ▀█ ▐█ ▀ ▪▐█ ▀.  "));
+        pLogger.info(TextUtils.simpleColorize("&a ▄█▀▀▀•▄█▀▀█ ▐█▐▐▌▄█ ▀█▄▐▀▀▪▄██▪   ▐█.▪▄█▀▀█ ▄█ ▀█▄▄▀▀▀█▄ "));
+        pLogger.info(TextUtils.simpleColorize("&a █▌▪▄█▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌ ▐█▌·▐█ ▪▐▌▐█▄▪▐█▐█▄▪▐█ "));
+        pLogger.info(TextUtils.simpleColorize("&a ·▀▀▀ • ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀▀▀  ▀  ▀ ·▀▀▀▀  ▀▀▀▀  "));
+        pLogger.info(TextUtils.simpleColorize("&a &7v" + Constants.VERSION + " - " + Constants.COMMIT_USER));
     }
 
     @Override
@@ -66,5 +75,9 @@ public class TagsPlugin extends JavaPlugin implements TagsInstance {
     @Override
     public void reload() {
 
+    }
+
+    public void loadLogger() {
+        pLogger = new BukkitLogger(getLogger());
     }
 }
