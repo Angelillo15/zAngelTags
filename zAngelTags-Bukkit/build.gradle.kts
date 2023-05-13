@@ -12,7 +12,6 @@ dependencies {
     compileOnly("com.destroystokyo.paper:paper-api:1.16.5-R0.1-SNAPSHOT")
     compileOnly("org.yaml:snakeyaml:2.0")
     compileOnly("com.github.Carleslc.Simple-YAML:Simple-Yaml:1.8.3")
-    compileOnly("com.github.Angelillo15:ConfigManager:1.4")
     compileOnly("com.zaxxer:HikariCP:5.0.1")
     compileOnly("com.comphenix.protocol:ProtocolLib:4.8.0")
     compileOnly("com.github.hamza-cskn.obliviate-invs:core:4.1.10")
