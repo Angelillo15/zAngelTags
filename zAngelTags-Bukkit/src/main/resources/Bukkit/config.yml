@@ -19,7 +19,7 @@
 Config:
   # The language file you want to use for the plugin messages.
   # Included locales: en.yml (english) and es.yml (spanish)
-  language: "english.yml"
+  language: "en.yml"
   # Enable or disable the debug mode.
   # If enabled, the plugin will send more information about the plugin status.
   debug: false
