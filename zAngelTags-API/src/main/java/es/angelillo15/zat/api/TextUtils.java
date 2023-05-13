@@ -109,6 +109,6 @@ public class TextUtils {
     }
 
     public static String simpleColorize(String text) {
-        return ChatColor.translateAlternateColorCodes('&', text);
+        return text.replace("&", "§");
     }
 }
