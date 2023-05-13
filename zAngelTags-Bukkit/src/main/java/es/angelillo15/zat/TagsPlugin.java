@@ -4,6 +4,7 @@ import es.angelillo15.zat.api.Constants;
 import es.angelillo15.zat.api.ILogger;
 import es.angelillo15.zat.api.TagsInstance;
 import es.angelillo15.zat.api.TextUtils;
+import es.angelillo15.zat.api.config.ConfigLoader;
 import es.angelillo15.zat.utils.BukkitLogger;
 import es.angelillo15.zat.utils.LibsLoader;
 import lombok.Getter;
@@ -42,7 +43,7 @@ public class TagsPlugin extends JavaPlugin implements TagsInstance {
 
     @Override
     public void loadConfig() {
-
+        new ConfigLoader().load();
     }
 
     @Override
