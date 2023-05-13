@@ -13,6 +13,7 @@ public class TagsPlugin extends JavaPlugin implements TagsInstance {
     @Getter
     private static TagsPlugin instance;
     private static ILogger pLogger;
+    private boolean debug;
 
     public TagsPlugin() {
         instance = this;
@@ -25,7 +26,7 @@ public class TagsPlugin extends JavaPlugin implements TagsInstance {
 
     @Override
     public boolean isDebug() {
-        return false;
+        return debug;
     }
 
     @Override
@@ -42,6 +43,11 @@ public class TagsPlugin extends JavaPlugin implements TagsInstance {
     @Override
     public void loadConfig() {
 
+    }
+
+    @Override
+    public void setDebug(boolean debug) {
+        this.debug = debug;
     }
 
     @Override

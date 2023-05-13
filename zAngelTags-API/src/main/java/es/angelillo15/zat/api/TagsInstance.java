@@ -17,6 +17,7 @@ public interface TagsInstance {
 
     ILogger getPLogger();
     boolean isDebug();
+    void setDebug(boolean debug);
     void drawLogo();
     void loadConfig();
     void registerCommands();
