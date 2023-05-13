@@ -2,9 +2,17 @@ package es.angelillo15.zat;
 
 import es.angelillo15.zat.api.ILogger;
 import es.angelillo15.zat.api.TagsInstance;
+import lombok.Getter;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class TagsPlugin extends JavaPlugin implements TagsInstance {
+    @Getter
+    private static TagsPlugin instance;
+
+    public TagsPlugin() {
+        instance = this;
+    }
+
     @Override
     public ILogger getPLogger() {
         return null;
