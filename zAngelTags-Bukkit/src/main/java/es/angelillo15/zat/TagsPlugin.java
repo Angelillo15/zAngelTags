@@ -5,6 +5,7 @@ import es.angelillo15.zat.api.ILogger;
 import es.angelillo15.zat.api.TagsInstance;
 import es.angelillo15.zat.api.TextUtils;
 import es.angelillo15.zat.utils.BukkitLogger;
+import es.angelillo15.zat.utils.LibsLoader;
 import lombok.Getter;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -29,12 +30,13 @@ public class TagsPlugin extends JavaPlugin implements TagsInstance {
 
     @Override
     public void drawLogo() {
-        pLogger.info(TextUtils.simpleColorize("&a ·▄▄▄▄• ▄▄▄·  ▐ ▄  ▄▄ • ▄▄▄ .▄▄▌  ▄▄▄▄▄ ▄▄▄·  ▄▄ • .▄▄ ·  "));
-        pLogger.info(TextUtils.simpleColorize("&a ▪▀·.█▌▐█ ▀█ •█▌▐█▐█ ▀ ▪▀▄.▀·██•  •██  ▐█ ▀█ ▐█ ▀ ▪▐█ ▀.  "));
-        pLogger.info(TextUtils.simpleColorize("&a ▄█▀▀▀•▄█▀▀█ ▐█▐▐▌▄█ ▀█▄▐▀▀▪▄██▪   ▐█.▪▄█▀▀█ ▄█ ▀█▄▄▀▀▀█▄ "));
-        pLogger.info(TextUtils.simpleColorize("&a █▌▪▄█▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌ ▐█▌·▐█ ▪▐▌▐█▄▪▐█▐█▄▪▐█ "));
-        pLogger.info(TextUtils.simpleColorize("&a ·▀▀▀ • ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀▀▀  ▀  ▀ ·▀▀▀▀  ▀▀▀▀  "));
-        pLogger.info(TextUtils.simpleColorize("&a &7v" + Constants.VERSION + " - " + Constants.COMMIT_USER));
+        pLogger.info(TextUtils.simpleColorize("&4 ·▄▄▄▄• ▄▄▄·  ▐ ▄  ▄▄ • ▄▄▄ .▄▄▌  ▄▄▄▄▄ ▄▄▄·  ▄▄ • .▄▄ ·  "));
+        pLogger.info(TextUtils.simpleColorize("&4 ▪▀·.█▌▐█ ▀█ •█▌▐█▐█ ▀ ▪▀▄.▀·██•  •██  ▐█ ▀█ ▐█ ▀ ▪▐█ ▀.  "));
+        pLogger.info(TextUtils.simpleColorize("&4 ▄█▀▀▀•▄█▀▀█ ▐█▐▐▌▄█ ▀█▄▐▀▀▪▄██▪   ▐█.▪▄█▀▀█ ▄█ ▀█▄▄▀▀▀█▄ "));
+        pLogger.info(TextUtils.simpleColorize("&4 █▌▪▄█▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌ ▐█▌·▐█ ▪▐▌▐█▄▪▐█▐█▄▪▐█ "));
+        pLogger.info(TextUtils.simpleColorize("&4 ·▀▀▀ • ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀▀▀  ▀  ▀ ·▀▀▀▀  ▀▀▀▀  "));
+        pLogger.info(TextUtils.simpleColorize("&a &7v" + Constants.VERSION + " - " + Constants.COMMIT));
+        LibsLoader.load();
     }
 
     @Override
