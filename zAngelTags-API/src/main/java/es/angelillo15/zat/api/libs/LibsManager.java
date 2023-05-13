@@ -15,7 +15,7 @@ public class LibsManager {
                 .artifactId("HikariCP")
                 .version("4.0.3")
                 .id("hikariCP")
-                .relocate("com{}zaxxer", "es{}angelillo15{}mast{}libs")
+                .relocate("com{}zaxxer", "es{}angelillo15{}zat{}libs")
                 .isolatedLoad(false)
                 .build();
 
@@ -24,9 +24,9 @@ public class LibsManager {
                 .artifactId("guava")
                 .version("31.1-jre")
                 .isolatedLoad(false)
-                .relocate("com{}google{}common", "es{}angelillo15{}mast{}libs{}google{}common")
-                .relocate("com{}google{}errorprone", "es{}angelillo15{}mast{}libs{}google{}errorprone")
-                .relocate("com{}google{}thirdparty", "es{}angelillo15{}mast{}libs{}google{}thirdparty")
+                .relocate("com{}google{}common", "es{}angelillo15{}zat{}libs{}google{}common")
+                .relocate("com{}google{}errorprone", "es{}angelillo15{}zat{}libs{}google{}errorprone")
+                .relocate("com{}google{}thirdparty", "es{}angelillo15{}zat{}libs{}google{}thirdparty")
                 .build();
 
         Library yamlMerge = Library.builder()
@@ -34,9 +34,9 @@ public class LibsManager {
                 .artifactId("yaml-config-updater")
                 .version("1.4.2")
                 .isolatedLoad(false)
-                .relocate("ru{}vyarus{}yaml{}updater", "es{}angelillo15{}mast{}libs{}yaml-config-updater")
-                //.relocate("org{}slf4j", "es{}angelillo15{}mast{}libs{}slf4j")
-                .relocate("org{}yaml{}snakeyaml", "es{}angelillo15{}mast{}libs{}snakeyaml")
+                .relocate("ru{}vyarus{}yaml{}updater", "es{}angelillo15{}zat{}libs{}yaml-config-updater")
+                //.relocate("org{}slf4j", "es{}angelillo15{}zat{}libs{}slf4j")
+                .relocate("org{}yaml{}snakeyaml", "es{}angelillo15{}zat{}libs{}snakeyaml")
                 .build();
 
         Library unirest = Library.builder()
@@ -44,9 +44,9 @@ public class LibsManager {
                 .artifactId("unirest-java")
                 .version("3.14.1")
                 .isolatedLoad(false)
-                .relocate("kong{}unirest", "es{}angelillo15{}mast{}libs{}unirest")
-                .relocate("org{}apache{}http", "es{}angelillo15{}mast{}libs{}http")
-                //.relocate("org{}apache{}commons{}logging", "es{}angelillo15{}mast{}libs{}commons-logging")
+                .relocate("kong{}unirest", "es{}angelillo15{}zat{}libs{}unirest")
+                .relocate("org{}apache{}http", "es{}angelillo15{}zat{}libs{}http")
+                //.relocate("org{}apache{}commons{}logging", "es{}angelillo15{}zat{}libs{}commons-logging")
                 .build();
 
         Library apacheHttp = Library.builder()
@@ -54,8 +54,8 @@ public class LibsManager {
                 .artifactId("httpcore")
                 .version("4.4.16")
                 .isolatedLoad(false)
-                .relocate("org{}apache{}http", "es{}angelillo15{}mast{}libs{}http")
-                //.relocate("org{}apache{}commons{}logging", "es{}angelillo15{}mast{}libs{}commons-logging")
+                .relocate("org{}apache{}http", "es{}angelillo15{}zat{}libs{}http")
+                //.relocate("org{}apache{}commons{}logging", "es{}angelillo15{}zat{}libs{}commons-logging")
                 .build();
 
         Library apacheClient = Library.builder()
@@ -63,8 +63,8 @@ public class LibsManager {
                 .artifactId("httpclient")
                 .version("4.5.14")
                 .isolatedLoad(false)
-                .relocate("org{}apache{}http", "es{}angelillo15{}mast{}libs{}http")
-                //.relocate("org{}apache{}commons{}logging", "es{}angelillo15{}mast{}libs{}commons-logging")
+                .relocate("org{}apache{}http", "es{}angelillo15{}zat{}libs{}http")
+                //.relocate("org{}apache{}commons{}logging", "es{}angelillo15{}zat{}libs{}commons-logging")
                 .build();
 
         Library apacheHttpNio = Library.builder()
@@ -72,8 +72,8 @@ public class LibsManager {
                 .artifactId("httpcore-nio")
                 .version("4.4.16")
                 .isolatedLoad(false)
-                .relocate("org{}apache{}http", "es{}angelillo15{}mast{}libs{}http")
-                //.relocate("org{}apache{}commons{}logging", "es{}angelillo15{}mast{}libs{}commons-logging")
+                .relocate("org{}apache{}http", "es{}angelillo15{}zat{}libs{}http")
+                //.relocate("org{}apache{}commons{}logging", "es{}angelillo15{}zat{}libs{}commons-logging")
                 .build();
 
         Library apacheHttpMime = Library.builder()
@@ -81,8 +81,8 @@ public class LibsManager {
                 .artifactId("httpmime")
                 .version("4.5.14")
                 .isolatedLoad(false)
-                .relocate("org{}apache{}http", "es{}angelillo15{}mast{}libs{}http")
-                //.relocate("org{}apache{}commons{}logging", "es{}angelillo15{}mast{}libs{}commons-logging")
+                .relocate("org{}apache{}http", "es{}angelillo15{}zat{}libs{}http")
+                //.relocate("org{}apache{}commons{}logging", "es{}angelillo15{}zat{}libs{}commons-logging")
                 .build();
 
         Library apacheLogger = Library.builder()
@@ -90,14 +90,14 @@ public class LibsManager {
                 .artifactId("commons-logging")
                 .version("1.2")
                 .isolatedLoad(false)
-                //.relocate("org{}apache{}commons{}logging", "es{}angelillo15{}mast{}libs{}commons-logging")
+                //.relocate("org{}apache{}commons{}logging", "es{}angelillo15{}zat{}libs{}commons-logging")
                 .build();
         Library jedis = Library.builder()
                 .groupId("redis{}clients")
                 .artifactId("jedis")
                 .version("4.4.0-m2")
                 .isolatedLoad(false)
-                .relocate("redis{}clients{}jedis", "es{}angelillo15{}mast{}libs{}jedis")
+                .relocate("redis{}clients{}jedis", "es{}angelillo15{}zat{}libs{}jedis")
                 .build();
 
 
