@@ -9,7 +9,6 @@ import lombok.Getter;
 import java.sql.*;
 
 public class PluginDriver implements StormDriver {
-    @Getter
     private Dialect dialect = new MariaDialect();
     private HikariDataSource ds;
 
