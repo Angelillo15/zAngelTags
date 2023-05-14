@@ -25,6 +25,9 @@ dependencies {
     compileOnly("org.yaml:snakeyaml:2.0")
     compileOnly("com.github.Carleslc.Simple-YAML:Simple-Yaml:1.8.3")
     compileOnly("net.md-5:bungeecord-chat:1.16-R0.4")
+    compileOnly("com.github.Mindgamesnl:storm:prod125")
+    compileOnly("com.zaxxer:HikariCP:4.0.3")
+    compileOnly("com.github.ben-manes.caffeine:caffeine:2.9.2")
 }
 
 blossom {

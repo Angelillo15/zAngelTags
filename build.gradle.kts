@@ -24,6 +24,8 @@ tasks.shadowJar {
     relocate("org.apache.commons.logging", "es.angelillo15.zat.libs.commons-logging")
     relocate("org.reflections", "es.angelillo15.zat.libs.reflections")
     relocate("io.papermc.lib", "es.angelillo15.zat.libs.paperlib")
+    relocate("com.craftmend.storm", "es.angelillo15.zat.libs.storm")
+    relocate("com.github.benmanes.caffeine", "es.angelillo15.zat.libs.caffeine")
 }
 
 dependencies {

@@ -24,6 +24,8 @@ dependencies {
     compileOnly("com.github.MrGraycat:eGlow:master-SNAPSHOT")
     compileOnly("net.byteflux:libby-bukkit:1.1.5")
     compileOnly("io.papermc:paperlib:1.0.7")
+    compileOnly("com.github.Mindgamesnl:storm:prod125")
+    compileOnly("com.github.ben-manes.caffeine:caffeine:2.9.2")
 }
 
 tasks.processResources {

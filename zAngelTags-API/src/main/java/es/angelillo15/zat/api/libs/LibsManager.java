@@ -9,7 +9,7 @@ public class LibsManager {
     @Getter
     public static ArrayList<Library> libs = new ArrayList<Library>();
 
-    public static void load(){
+    public static void load() {
         Library hikariCP = Library.builder()
                 .groupId("com{}zaxxer")
                 .artifactId("HikariCP")
@@ -92,12 +92,22 @@ public class LibsManager {
                 .isolatedLoad(false)
                 //.relocate("org{}apache{}commons{}logging", "es{}angelillo15{}zat{}libs{}commons-logging")
                 .build();
-        Library jedis = Library.builder()
-                .groupId("redis{}clients")
-                .artifactId("jedis")
-                .version("4.4.0-m2")
+
+        Library storm = Library.builder()
+                .groupId("com{}github{}Mindgamesnl")
+                .artifactId("storm")
+                .version("prod125")
                 .isolatedLoad(false)
-                .relocate("redis{}clients{}jedis", "es{}angelillo15{}zat{}libs{}jedis")
+                .relocate("com{}craftmend{}storm", "es{}angelillo15{}zat{}libs{}storm")
+                .relocate("com{}google{}gson", "es{}angelillo15{}zat{}libs{}google{}gson")
+                .build();
+
+        Library caffeine = Library.builder()
+                .groupId("com{}github{}ben-manes")
+                .artifactId("caffeine")
+                .version("2.9.2")
+                .isolatedLoad(false)
+                .relocate("com{}github{}benmanes{}caffeine", "es{}angelillo15{}zat{}libs{}caffeine")
                 .build();
 
 
@@ -110,15 +120,17 @@ public class LibsManager {
         libs.add(apacheClient);
         libs.add(apacheHttpMime);
         libs.add(apacheLogger);
-        libs.add(jedis);
+        libs.add(storm);
+        libs.add(caffeine);
         libs.add(getLib("org{}slf4j", "slf4j-api", "2.0.6"));
     }
 
     /**
      * Get a library from Maven Central or JitPack
-     * @param groupID The group ID of the library
+     *
+     * @param groupID  The group ID of the library
      * @param artifact The artifact ID of the library
-     * @param version The version of the library
+     * @param version  The version of the library
      * @param relocate The package to relocate the library to
      * @return The library
      */
@@ -134,9 +146,9 @@ public class LibsManager {
     }
 
     /**
-     * @param groupID The groupID of the library
+     * @param groupID  The groupID of the library
      * @param artifact The artifact of the library
-     * @param version The version of the library
+     * @param version  The version of the library
      * @return The library
      */
     public static Library getLib(String groupID, String artifact, String version) {
@@ -151,11 +163,12 @@ public class LibsManager {
 
     /**
      * Get a library by its ID
-     * @param lib The ID of the library
+     *
+     * @param lib        The ID of the library
      * @param relocation The relocation of the library
      * @return The library
      */
-    public static Library getLib(String lib, String relocation){
+    public static Library getLib(String lib, String relocation) {
         String[] libInfo = lib.split(":");
         Library library = getLib(
                 libInfo[0],
