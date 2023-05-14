@@ -8,11 +8,13 @@ import com.craftmend.storm.api.StormModel;
 import es.angelillo15.zat.api.TagsInstance;
 import es.angelillo15.zat.api.database.PluginConnection;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.UUID;
 
 @Data
 @Table(name = "zat_user_data")
+@EqualsAndHashCode(callSuper = true)
 public class UserModel extends StormModel {
     public static final String UNKNOWN = "unknown";
     @Column(
