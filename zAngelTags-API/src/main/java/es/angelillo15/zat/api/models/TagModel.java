@@ -82,4 +82,22 @@ public class TagModel extends StormModel {
 
         return tag;
     }
+
+    public static TagModel getById(int id) {
+        Storm storage = PluginConnection.getStorm();
+        TagModel tag = null;
+
+        try {
+            tag = storage.buildQuery(TagModel.class)
+                    .where("id", Where.EQUAL, id)
+                    .execute()
+                    .join()
+                    .iterator()
+                    .next();
+        } catch (Exception e) {
+            TagsInstance.getLogger().debug("Error while getting tag by id: " + e.getMessage());
+        }
+
+        return tag;
+    }
 }
