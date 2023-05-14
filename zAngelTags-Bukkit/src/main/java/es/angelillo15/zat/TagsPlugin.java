@@ -1,9 +1,6 @@
 package es.angelillo15.zat;
 
-import es.angelillo15.zat.api.Constants;
-import es.angelillo15.zat.api.ILogger;
-import es.angelillo15.zat.api.TagsInstance;
-import es.angelillo15.zat.api.TextUtils;
+import es.angelillo15.zat.api.*;
 import es.angelillo15.zat.api.config.Config;
 import es.angelillo15.zat.api.config.ConfigLoader;
 import es.angelillo15.zat.api.database.DataProvider;
@@ -13,6 +10,7 @@ import es.angelillo15.zat.utils.BukkitLogger;
 import es.angelillo15.zat.utils.LibsLoader;
 import lombok.Getter;
 import lombok.SneakyThrows;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class TagsPlugin extends JavaPlugin implements TagsInstance {
@@ -64,6 +62,11 @@ public class TagsPlugin extends JavaPlugin implements TagsInstance {
     @Override
     public void registerListeners() {
         getServer().getPluginManager().registerEvents(new UserDataListener(), this);
+    }
+
+    @Override
+    public ITagPlayer createTagPlayer(Player player) {
+        return new TagPlayer(player);
     }
 
     @SneakyThrows

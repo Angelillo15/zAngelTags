@@ -1,6 +1,7 @@
 package es.angelillo15.zat.api;
 
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 
 public interface TagsInstance {
     int version = Integer.parseInt(Bukkit.getBukkitVersion().split("-")[0].split("\\.")[1]);
@@ -31,4 +32,5 @@ public interface TagsInstance {
     void unregisterListeners();
     void unloadDatabase();
     void reload();
+    ITagPlayer createTagPlayer(Player player);
 }
