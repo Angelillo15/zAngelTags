@@ -26,6 +26,11 @@ public class TagModel extends StormModel {
     @Column(
             length = 64
     )
+    private String material = "NETHER_STAR";
+
+    @Column(
+            length = 64
+    )
     private String permission;
 
     @Override
