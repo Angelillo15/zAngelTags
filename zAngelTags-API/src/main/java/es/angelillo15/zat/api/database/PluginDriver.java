@@ -4,7 +4,6 @@ import com.craftmend.storm.connection.StormDriver;
 import com.craftmend.storm.dialect.Dialect;
 import com.craftmend.storm.dialect.mariadb.MariaDialect;
 import com.zaxxer.hikari.HikariDataSource;
-import lombok.Getter;
 
 import java.sql.*;
 
@@ -46,7 +45,7 @@ public class PluginDriver implements StormDriver {
                 }
                 int o = ps.executeUpdate();
                 try (ResultSet generated = ps.getGeneratedKeys()) {
-                    while (generated.next()) {
+                    if (generated.next()) {
                         return generated.getInt(1);
                     }
                 }
