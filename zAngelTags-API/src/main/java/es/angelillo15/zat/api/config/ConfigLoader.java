@@ -27,7 +27,6 @@ public class ConfigLoader {
     private static ConfigManager customItems;
     @Getter
     private static ConfigManager punishmentsGUI;
-    private String language;
 
     public void load() {
         ILogger logger = TagsInstance.getInstance().getPLogger();
@@ -63,7 +62,7 @@ public class ConfigLoader {
     }
 
     public void loadMessage() {
-        language = config.getConfig().getString("Config.language");
+        String language = config.getConfig().getString("Config.language");
         String lang = "lang/" + language;
 
         messages = new ConfigManager(plugin.getDataFolder().toPath(), "/Bukkit/" +lang, lang);
