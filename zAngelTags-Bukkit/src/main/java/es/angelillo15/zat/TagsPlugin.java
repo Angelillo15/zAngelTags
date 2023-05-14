@@ -8,6 +8,7 @@ import es.angelillo15.zat.api.config.Config;
 import es.angelillo15.zat.api.config.ConfigLoader;
 import es.angelillo15.zat.api.database.DataProvider;
 import es.angelillo15.zat.api.database.PluginConnection;
+import es.angelillo15.zat.listeners.UserDataListener;
 import es.angelillo15.zat.utils.BukkitLogger;
 import es.angelillo15.zat.utils.LibsLoader;
 import lombok.Getter;
@@ -62,7 +63,7 @@ public class TagsPlugin extends JavaPlugin implements TagsInstance {
 
     @Override
     public void registerListeners() {
-
+        getServer().getPluginManager().registerEvents(new UserDataListener(), this);
     }
 
     @SneakyThrows
