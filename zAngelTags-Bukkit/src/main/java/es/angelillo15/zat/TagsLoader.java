@@ -1,5 +1,8 @@
 package es.angelillo15.zat;
 
+import es.angelillo15.zat.utils.Metrics;
+import io.papermc.lib.PaperLib;
+
 public class TagsLoader extends TagsPlugin {
     @Override
     public void onEnable() {
@@ -9,6 +12,8 @@ public class TagsLoader extends TagsPlugin {
         registerCommands();
         registerListeners();
         loadDatabase();
+        PaperLib.suggestPaper(this);
+        new Metrics(this, 15601);
     }
 
     @Override
