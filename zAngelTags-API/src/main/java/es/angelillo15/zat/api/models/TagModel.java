@@ -1,8 +1,12 @@
 package es.angelillo15.zat.api.models;
 
+import com.craftmend.storm.Storm;
 import com.craftmend.storm.api.StormModel;
+import com.craftmend.storm.api.enums.Where;
 import com.craftmend.storm.api.markers.Column;
 import com.craftmend.storm.api.markers.Table;
+import es.angelillo15.zat.api.TagsInstance;
+import es.angelillo15.zat.api.database.PluginConnection;
 import lombok.Data;
 
 @Data
@@ -31,5 +35,51 @@ public class TagModel extends StormModel {
             return tag.getName().equals(getName());
         }
         return false;
+    }
+
+    /**
+     * Check if tag exists in database
+     * @param name name of the tag
+     * @return true if exists, false if not
+     */
+    public static boolean exists(String name) {
+        Storm storage = PluginConnection.getStorm();
+        boolean exists = false;
+
+        try {
+            exists = storage.buildQuery(TagModel.class)
+                    .where("name", Where.EQUAL, name)
+                    .execute()
+                    .join()
+                    .iterator()
+                    .hasNext();
+        } catch (Exception e) {
+            TagsInstance.getLogger().debug("Error while checking if user exists: " + e.getMessage());
+        }
+
+        return exists;
+    }
+
+    /**
+     * Get tag by name
+     * @param name name of the tag
+     * @return the tag if exists, null if not
+     */
+    public static TagModel getByName(String name) {
+        Storm storage = PluginConnection.getStorm();
+        TagModel tag = null;
+
+        try {
+            tag = storage.buildQuery(TagModel.class)
+                    .where("name", Where.EQUAL, name)
+                    .execute()
+                    .join()
+                    .iterator()
+                    .next();
+        } catch (Exception e) {
+            TagsInstance.getLogger().debug("Error while getting tag by name: " + e.getMessage());
+        }
+
+        return tag;
     }
 }
