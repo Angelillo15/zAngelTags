@@ -7,7 +7,9 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import es.angelillo15.zat.api.TagsInstance;
 import es.angelillo15.zat.api.TextUtils;
+import es.angelillo15.zat.api.models.TagModel;
 import es.angelillo15.zat.api.models.UserModel;
+import es.angelillo15.zat.api.models.UserTagsModel;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import java.io.File;
@@ -97,6 +99,10 @@ public class PluginConnection {
     public static void migrate() {
         Storm storm = PluginConnection.getStorm();
         storm.registerModel(new UserModel());
+        storm.runMigrations();
+        storm.registerModel(new TagModel());
+        storm.runMigrations();
+        storm.registerModel(new UserTagsModel());
         storm.runMigrations();
     }
 }
