@@ -34,11 +34,12 @@ blossom {
     val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
     val current = LocalDateTime.now().format(formatter)
 
+    val und = "undefined"
 
     replaceTokenIn("src/main/java/es/angelillo15/zat/api/Constants.java")
     replaceToken("{version}", project.version)
-    replaceToken("{git-commit}",  grgit.head().abbreviatedId ?: "undefined")
-    replaceToken("{git-user}", grgit.head().committer.name ?: "undefined")
-    replaceToken("{git-date}", current ?: "undefined")
-    replaceToken("{git-branch}", grgit.branch.current().name ?: "undefined")
+    replaceToken("{git-commit}",  grgit.head().abbreviatedId ?: und)
+    replaceToken("{git-user}", grgit.head().committer.name ?: und)
+    replaceToken("{git-date}", current ?: und)
+    replaceToken("{git-branch}", grgit.branch.current().name ?: und)
 }
