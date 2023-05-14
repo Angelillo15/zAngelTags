@@ -9,8 +9,8 @@ import lombok.Getter;
 import java.sql.*;
 
 public class PluginDriver implements StormDriver {
-    private Dialect dialect = new MariaDialect();
-    private HikariDataSource ds;
+    private final Dialect dialect = new MariaDialect();
+    private final HikariDataSource ds;
 
     public PluginDriver(HikariDataSource dataSource) throws SQLException {
         ds = dataSource;
