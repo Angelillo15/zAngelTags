@@ -3,6 +3,7 @@ package es.angelillo15.zat.api.config;
 import es.angelillo15.configmanager.ConfigManager;
 import es.angelillo15.zat.api.ILogger;
 import es.angelillo15.zat.api.TagsInstance;
+import es.angelillo15.zat.api.exceptions.MessageLoadException;
 import lombok.Getter;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -70,7 +71,7 @@ public class ConfigLoader {
         try {
             messages.getConfig().load();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new MessageLoadException(e.getMessage());
         }
     }
 }
