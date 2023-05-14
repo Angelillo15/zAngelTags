@@ -15,6 +15,10 @@ public interface TagsInstance {
         return Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null;
     }
 
+    static ILogger getLogger() {
+        return getInstance().getPLogger();
+    }
+
     ILogger getPLogger();
     boolean isDebug();
     void setDebug(boolean debug);
