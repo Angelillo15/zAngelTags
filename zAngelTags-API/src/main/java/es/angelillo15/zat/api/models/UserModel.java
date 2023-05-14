@@ -112,4 +112,21 @@ public class UserModel extends StormModel {
     public static UserModel getUser(String username) {
         return getUser("username", username);
     }
+
+    public UserTagsModel getTags() {
+        Storm storage = PluginConnection.getStorm();
+
+        try {
+            return storage.buildQuery(UserTagsModel.class)
+                    .where("user_model_id", Where.EQUAL, getId())
+                    .execute()
+                    .join()
+                    .iterator()
+                    .next();
+        } catch (Exception e) {
+            TagsInstance.getLogger().debug("Error while getting user tags: " + e.getMessage());
+        }
+
+        return null;
+    }
 }
