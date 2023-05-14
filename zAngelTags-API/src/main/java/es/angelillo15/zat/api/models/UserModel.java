@@ -7,9 +7,11 @@ import com.craftmend.storm.Storm;
 import com.craftmend.storm.api.StormModel;
 import es.angelillo15.zat.api.TagsInstance;
 import es.angelillo15.zat.api.database.PluginConnection;
+import lombok.Data;
 
 import java.util.UUID;
 
+@Data
 @Table(name = "zat_user_data")
 public class UserModel extends StormModel {
     public static final String UNKNOWN = "unknown";
@@ -54,7 +56,7 @@ public class UserModel extends StormModel {
      * @param uuid UUID of the user
      * @return true if exists, false if not
      */
-    public static boolean exits(UUID uuid) {
+    public static boolean exists(UUID uuid) {
         return exists("UUID", uuid.toString());
     }
 
@@ -63,7 +65,7 @@ public class UserModel extends StormModel {
      * @param username username of the user
      * @return true if exists, false if not
      */
-    public static boolean exits(String username) {
+    public static boolean exists(String username) {
         return exists("username", username);
     }
 
