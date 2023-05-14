@@ -4,10 +4,14 @@ import es.angelillo15.zat.api.Constants;
 import es.angelillo15.zat.api.ILogger;
 import es.angelillo15.zat.api.TagsInstance;
 import es.angelillo15.zat.api.TextUtils;
+import es.angelillo15.zat.api.config.Config;
 import es.angelillo15.zat.api.config.ConfigLoader;
+import es.angelillo15.zat.api.database.DataProvider;
+import es.angelillo15.zat.api.database.PluginConnection;
 import es.angelillo15.zat.utils.BukkitLogger;
 import es.angelillo15.zat.utils.LibsLoader;
 import lombok.Getter;
+import lombok.SneakyThrows;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class TagsPlugin extends JavaPlugin implements TagsInstance {
@@ -61,9 +65,23 @@ public class TagsPlugin extends JavaPlugin implements TagsInstance {
 
     }
 
+    @SneakyThrows
     @Override
     public void loadDatabase() {
-
+        if (Config.Database.type() == DataProvider.MYSQL) {
+            new PluginConnection(
+                    Config.Database.host(),
+                    Config.Database.port(),
+                    Config.Database.database(),
+                    Config.Database.user(),
+                    Config.Database.password()
+            );
+        } else {
+            new PluginConnection(getDataFolder().getPath());
+        }
+        pLogger.debug("Running database migrations...");
+        PluginConnection.migrate();
+        pLogger.debug("Database migrations finished!");
     }
 
     @Override
