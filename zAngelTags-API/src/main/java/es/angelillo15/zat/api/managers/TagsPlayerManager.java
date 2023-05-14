@@ -24,6 +24,7 @@ public class TagsPlayerManager {
      */
     public static void addPlayer(ITagPlayer player) {
         players.put(player.getPlayer().getUniqueId(), player);
+        TagsInstance.getLogger().debug("TagPlayerManager <-> Added player " + player.getPlayer().getName() + " to the HashMap");
     }
 
     /**
@@ -31,7 +32,9 @@ public class TagsPlayerManager {
      * @param player ITagPlayer object
      */
     public static void removePlayer(ITagPlayer player) {
+        if (!hasPlayer(player.getPlayer().getUniqueId())) return;
         players.remove(player.getPlayer().getUniqueId());
+        TagsInstance.getLogger().debug("TagPlayerManager <-> Removed player " + player.getPlayer().getName() + " from the HashMap");
     }
 
     /**
