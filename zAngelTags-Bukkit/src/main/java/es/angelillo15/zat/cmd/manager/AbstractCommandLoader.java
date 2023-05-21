@@ -1,5 +1,6 @@
 package es.angelillo15.zat.cmd.manager;
 
+import es.angelillo15.zat.TagsPlugin;
 import es.angelillo15.zat.api.TagsInstance;
 import es.angelillo15.zat.api.cmd.Command;
 import es.angelillo15.zat.api.cmd.CommandData;
@@ -51,7 +52,10 @@ public class AbstractCommandLoader {
 
         CommandMap commandMap = (CommandMap) commandMapField.get(Bukkit.getServer());
 
-        commandMap.register(data.name(), command);
+        commandMap.register(
+                TagsPlugin.getInstance().getDescription().getName(),
+                command
+        );
 
         TagsInstance.getLogger().debug("Registered command " + data.name() + " into command map");
 
