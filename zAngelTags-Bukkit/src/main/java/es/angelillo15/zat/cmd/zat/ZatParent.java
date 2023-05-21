@@ -18,5 +18,6 @@ public class ZatParent extends CommandParent {
     public ZatParent() {
         instance = this;
         registerSubCommand(new ZatHelp());
+        registerSubCommand(new CreateTag());
     }
 }
