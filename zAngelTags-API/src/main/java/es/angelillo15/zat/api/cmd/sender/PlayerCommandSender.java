@@ -1,5 +1,6 @@
 package es.angelillo15.zat.api.cmd.sender;
 
+import es.angelillo15.zat.api.TextUtils;
 import org.bukkit.entity.Player;
 
 public class PlayerCommandSender implements CommandSender {
@@ -11,7 +12,7 @@ public class PlayerCommandSender implements CommandSender {
 
     @Override
     public void sendMessage(String message) {
-        player.sendMessage(message);
+        player.sendMessage(TextUtils.colorize(message));
     }
 
     @Override

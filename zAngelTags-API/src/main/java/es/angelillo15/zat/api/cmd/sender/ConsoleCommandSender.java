@@ -1,11 +1,12 @@
 package es.angelillo15.zat.api.cmd.sender;
 
 import es.angelillo15.zat.api.TagsInstance;
+import es.angelillo15.zat.api.TextUtils;
 
 public class ConsoleCommandSender implements CommandSender {
     @Override
     public void sendMessage(String message) {
-        TagsInstance.getLogger().info(message);
+        TagsInstance.getLogger().info(TextUtils.colorize(message));
     }
 
     @Override
