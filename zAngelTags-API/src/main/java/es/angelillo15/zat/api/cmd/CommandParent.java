@@ -42,7 +42,7 @@ public abstract class CommandParent extends Command {
         sender.sendMessage(TextUtils.simpleColorize("&c&lzAngelTags &7- &fv" + Constants.VERSION));
         for (SubCommand subCommand : subCommands.values()) {
             if(sender.hasPermission(subCommand.getPermission())){
-                sender.sendMessage(TextUtils.colorize("&a&l> &r" + subCommand.getSyntax() + " &7- &7" + subCommand.getDescription()));
+                sender.sendMessage(TextUtils.colorize("&c&l> &r" + subCommand.getSyntax() + " &7- &7" + subCommand.getDescription()));
             }
         }
     }
