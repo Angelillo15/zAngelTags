@@ -1,4 +1,4 @@
-package es.angelillo15.zat.cmd;
+package es.angelillo15.zat.cmd.manager;
 
 import es.angelillo15.zat.api.cmd.sender.PlayerCommandSender;
 import org.bukkit.command.CommandSender;
