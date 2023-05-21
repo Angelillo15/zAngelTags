@@ -5,8 +5,8 @@ import es.angelillo15.zat.api.config.Config;
 import es.angelillo15.zat.api.config.ConfigLoader;
 import es.angelillo15.zat.api.database.DataProvider;
 import es.angelillo15.zat.api.database.PluginConnection;
-import es.angelillo15.zat.cmd.TestCMD;
 import es.angelillo15.zat.cmd.manager.AbstractCommandLoader;
+import es.angelillo15.zat.cmd.zat.ZatParent;
 import es.angelillo15.zat.listeners.UserDataListener;
 import es.angelillo15.zat.utils.BukkitLogger;
 import es.angelillo15.zat.utils.LibsLoader;
@@ -58,7 +58,7 @@ public class TagsPlugin extends JavaPlugin implements TagsInstance {
 
     @Override
     public void registerCommands() {
-        AbstractCommandLoader.registerCommand(new TestCMD());
+        AbstractCommandLoader.registerCommand(new ZatParent());
     }
 
     @Override
