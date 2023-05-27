@@ -15,3 +15,4 @@ plugins {
 rootProject.name = "zAngelTags"
 include("zAngelTags-API")
 include("zAngelTags-Bukkit")
+include("zAngelTags-PAPI-Extension")

@@ -31,6 +31,7 @@ tasks.shadowJar {
 dependencies {
     implementation(project(":zAngelTags-API"))
     implementation(project(":zAngelTags-Bukkit"))
+    compileOnly(project(":zAngelTags-PAPI-Extension"))
     implementation("com.github.Carleslc.Simple-YAML:Simple-Yaml:1.8.3")
     implementation("com.github.Angelillo15:ConfigManager:1.4")
     implementation("com.github.hamza-cskn.obliviate-invs:core:4.1.10")
@@ -61,6 +62,7 @@ allprojects {
         maven("https://repo.alessiodp.com/releases/")
         maven("https://papermc.io/repo/repository/maven-releases/")
         maven("https://repo.papermc.io/repository/maven-public/")
+        maven("https://repo.extendedclip.com/content/repositories/placeholderapi/")
         maven("https://repo.extendedclip.com/content/repositories/placeholderapi/")
     }
 
