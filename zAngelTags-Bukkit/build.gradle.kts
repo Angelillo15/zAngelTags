@@ -2,10 +2,6 @@ plugins {
     id("java")
 }
 
-repositories {
-    mavenCentral()
-}
-
 dependencies {
     compileOnly(project(":zAngelTags-API"))
     compileOnly("org.spigotmc:spigot-api:1.19-R0.1-SNAPSHOT")
@@ -18,14 +14,13 @@ dependencies {
     compileOnly("com.github.hamza-cskn.obliviate-invs:configurablegui:4.1.10")
     compileOnly("com.github.hamza-cskn.obliviate-invs:advancedslot:4.1.10")
     compileOnly("com.github.hamza-cskn.obliviate-invs:pagination:4.1.10")
-    compileOnly("me.clip:placeholderapi:2.11.2")
     compileOnly("com.github.MilkBowl:VaultAPI:1.7.1")
     compileOnly("com.konghq:unirest-java:3.11.09")
-    compileOnly("com.github.MrGraycat:eGlow:master-SNAPSHOT")
     compileOnly("net.byteflux:libby-bukkit:1.1.5")
     compileOnly("io.papermc:paperlib:1.0.7")
     compileOnly("com.github.Mindgamesnl:storm:prod125")
     compileOnly("com.github.ben-manes.caffeine:caffeine:2.9.2")
+    compileOnly("me.clip:placeholderapi:2.11.3")
 }
 
 tasks.processResources {
