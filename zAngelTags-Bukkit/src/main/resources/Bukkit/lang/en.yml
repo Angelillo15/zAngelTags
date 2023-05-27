@@ -1,0 +1,38 @@
+# ·▄▄▄▄• ▄▄▄·  ▐ ▄  ▄▄ • ▄▄▄ .▄▄▌  ▄▄▄▄▄ ▄▄▄·  ▄▄ • .▄▄ ·
+# ▪▀·.█▌▐█ ▀█ •█▌▐█▐█ ▀ ▪▀▄.▀·██•  •██  ▐█ ▀█ ▐█ ▀ ▪▐█ ▀.
+# ▄█▀▀▀•▄█▀▀█ ▐█▐▐▌▄█ ▀█▄▐▀▀▪▄██▪   ▐█.▪▄█▀▀█ ▄█ ▀█▄▄▀▀▀█▄
+# █▌▪▄█▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌ ▐█▌·▐█ ▪▐▌▐█▄▪▐█▐█▄▪▐█
+# ·▀▀▀ • ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀▀▀  ▀  ▀ ·▀▀▀▀  ▀▀▀▀
+#
+# This file is part of zAngelTags (Bukkit).
+#
+# zAngelTags is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# Remember to join my Discord server if you need help:
+# https://discord.nookure.com/
+#
+# General Messages for the plugin.
+#
+# Prefix for the plugin.
+Prefix: "&c「zAngelTags」"
+Commands:
+  noPermission: "{prefix} &cYou don't have permission to execute this command!"
+  # Command: zat:
+  zat:
+    create:
+      # Usage of the command.
+      # the display can be more than one word.
+      usage: "{prefix} &cUsage: &7/zat create <name> <permission> <display>"
+      # Message sent when the tag is created successfully.
+      # You can use the following placeholders:
+      # ↳ {tag} - The name of the tag.
+      # ↳ {display} - The display of the tag.
+      # ↳ {permission} - The permission of the tag.
+      success: "{prefix} &aTag {display} created successfully!"
+      # Message sent when the tag already exists.
+      # You can use the following placeholders:
+      # ↳ {tag} - The name of the tag.
+      alreadyExists: "{prefix} &cThe tag &7{tag} &calready exists!"
